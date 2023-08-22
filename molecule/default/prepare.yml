@@ -1,0 +1,18 @@
+---
+- name: Prepare
+  hosts: all
+  become: yes
+  gather_facts: no
+
+  roles:
+    - role: robertdebock.bootstrap
+    # The roles buildtools, python_pip and postgres are required.
+    # bareos-dir needs to connect to a database.
+    - role: robertdebock.buildtools
+    - role: robertdebock.python_pip
+    - role: robertdebock.postgres
+    # The roles core_dependencies and postfix are  required for the `bareos_role`: "dir".
+    # bareos-dir needs to send emails.
+    - role: robertdebock.core_dependencies
+    - role: robertdebock.postfix
+    - role: robertdebock.bareos_repository

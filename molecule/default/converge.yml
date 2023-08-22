@@ -1,0 +1,11 @@
+---
+- name: Converge
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  roles:
+    - role: ansible-role-bareos_dir
+      bareos_dir_password: "secretpassword"
+      bareos_dir_max_concurrent_jobs: 10
+      bareos_dir_messages: Daemon
