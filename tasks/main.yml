@@ -31,7 +31,7 @@
     label: "{{ item | basename }}"
   notify:
     - Write results of database setup to file
-    
+
 - name: Run handlers
   ansible.builtin.meta: flush_handlers
 
