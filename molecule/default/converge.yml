@@ -8,4 +8,12 @@
     - role: ansible-role-bareos_dir
       bareos_dir_password: "secretpassword"
       bareos_dir_max_concurrent_jobs: 10
-      bareos_dir_messages: Daemon
+      bareos_dir_message: Daemon
+      bareos_dir_clients:
+        - name: client1
+          address: 127.0.0.1
+          password: "MySecretPassword"
+      bareos_dir_messages:
+        - name: "Standard"
+          director: "dir-1 = all, !skipped, !restored"
+          description: "Send all messages to the Director."
