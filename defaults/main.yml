@@ -14,7 +14,7 @@ bareos_dir_queryfile: "/usr/lib/bareos/scripts/query.sql"
 #     address: 127.0.0.1
 #     password: "MySecretPassword"
 
-bareos_dir_messages:
-  - name: "Standard"
-    director: "dir-1 = all, !skipped, !restored"
-    description: "Send all messages to the Director."
+# bareos_dir_messages:
+#   - name: "Standard"
+#     director: "dir-1 = all, !skipped, !restored"
+#     description: "Send all messages to the Director."

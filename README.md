@@ -21,11 +21,15 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
     - role: robertdebock.bareos_dir
       bareos_dir_password: "secretpassword"
       bareos_dir_max_concurrent_jobs: 10
-      bareos_dir_messages: Daemon
+      bareos_dir_message: Daemon
       bareos_dir_clients:
         - name: client1
           address: 127.0.0.1
           password: "MySecretPassword"
+      bareos_dir_messages:
+        - name: "Standard"
+          director: "dir-1 = all, !skipped, !restored"
+          description: "Send all messages to the Director."
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-bareos_dir/blob/master/molecule/default/prepare.yml):
@@ -66,13 +70,18 @@ bareos_dir_hostname: "{{ ansible_fqdn }}"
 # bareos_dir_password: "secretpassword" # <- Please set your own password.
 bareos_dir_queryfile: "/usr/lib/bareos/scripts/query.sql"
 # bareos_dir_max_concurrent_jobs: 10 # <- Please set your own value.
-# bareos_dir_messages: Daemon # <- Please set your own.
+# bareos_dir_message: Daemon # <- Please set your own.
 
 # You need to configure Director with all clients.
 # bareos_dir_clients:
 #   - name: client1
 #     address: 127.0.0.1
 #     password: "MySecretPassword"
+
+# bareos_dir_messages:
+#   - name: "Standard"
+#     director: "dir-1 = all, !skipped, !restored"
+#     description: "Send all messages to the Director."
 ```
 
 ## [Requirements](#requirements)
