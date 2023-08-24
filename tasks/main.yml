@@ -45,7 +45,7 @@
   notify:
     - Restart bareos-dir
 
-- name: Place messages
+- name: Place message
   ansible.builtin.template:
     src: message.conf.j2
     dest: "/etc/bareos/bareos-dir.d/messages/{{ item.name | capitalize }}.conf"
@@ -57,6 +57,8 @@
     label: "{{ item.name }}"
   notify:
     - Restart bareos-dir
+  when:
+    - bareos_dir_messages is defined
 
 - name: Place profiles
   ansible.builtin.template:
