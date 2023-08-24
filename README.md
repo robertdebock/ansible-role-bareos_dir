@@ -84,8 +84,8 @@ bareos_dir_hostname: "{{ ansible_fqdn }}"
 bareos_dir_queryfile: "/usr/lib/bareos/scripts/query.sql"
 # bareos_dir_max_concurrent_jobs: 10 # <- Please set your own value.
 # bareos_dir_message: Daemon # <- Please set your own.
-bareos_dir_tls_enable: true
-bareos_dir_tls_verify_peer: false
+bareos_dir_tls_enable: yes
+bareos_dir_tls_verify_peer: no
 
 # You need to configure Director with all clients.
 # bareos_dir_clients:
