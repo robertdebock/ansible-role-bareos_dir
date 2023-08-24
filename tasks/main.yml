@@ -58,6 +58,19 @@
   notify:
     - Restart bareos-dir
 
+- name: Place profiles
+  ansible.builtin.template:
+    src: profile.conf.j2
+    dest: "/etc/bareos/bareos-dir.d/profile/{{ item.name }}.conf"
+    owner: bareos
+    group: bareos
+    mode: "0644"
+  loop: "{{ bareos_dir_profiles }}"
+  loop_control:
+    label: "{{ item.name }}"
+  notify:
+    - Restart bareos-dir
+
 - name: Start bareos-dir
   ansible.builtin.service:
     name: bareos-dir

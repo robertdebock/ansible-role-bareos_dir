@@ -30,6 +30,19 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
         - name: "Standard"
           director: "dir-1 = all, !skipped, !restored"
           description: "Send all messages to the Director."
+      bareos_dir_profiles:
+        - name: webui-admin
+          jobacl: '"*all*"'
+          clientacl: '"*all*"'
+          storageacl: '"*all*"'
+          scheduleacl: '"*all*"'
+          poolacl: '"*all*"'
+          commandacl: '"!.bvfs_clear_cache", "!.exit", "!.sql", "!configure", "!create", "!delete", "!purge", "!prune", "!sqlquery", "!umount", "!unmount", "*all*"'
+          filesetacl: '"*all*"'
+          catalogacl: '"*all*"'
+          whereacl: '"*all*"'
+          pluginoptionsacl: '"*all*"'
+
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-bareos_dir/blob/master/molecule/default/prepare.yml):
@@ -82,6 +95,20 @@ bareos_dir_queryfile: "/usr/lib/bareos/scripts/query.sql"
 #   - name: "Standard"
 #     director: "dir-1 = all, !skipped, !restored"
 #     description: "Send all messages to the Director."
+
+# You need to configure Director with profiles.
+# bareos_dir_profiles:
+#   - name: webui-admin
+#     jobacl: '"*all*"'
+#     clientacl: '"*all*"'
+#     storageacl: '"*all*"'
+#     scheduleacl: '"*all*"'
+#     poolacl: '"*all*"'
+#     commandacl: '"!.bvfs_clear_cache", "!.exit", "!.sql", "!configure", "!create", "!delete", "!purge", "!prune", "!sqlquery", "!umount", "!unmount", "*all*"'
+#     filesetacl: '"*all*"'
+#     catalogacl: '"*all*"'
+#     whereacl: '"*all*"'
+#     pluginoptionsacl: '"*all*"'
 ```
 
 ## [Requirements](#requirements)

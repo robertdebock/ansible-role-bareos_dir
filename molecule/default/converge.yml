@@ -17,3 +17,16 @@
         - name: "Standard"
           director: "dir-1 = all, !skipped, !restored"
           description: "Send all messages to the Director."
+      bareos_dir_profiles:
+        - name: webui-admin
+          jobacl: '"*all*"'
+          clientacl: '"*all*"'
+          storageacl: '"*all*"'
+          scheduleacl: '"*all*"'
+          poolacl: '"*all*"'
+          commandacl: '"!.bvfs_clear_cache", "!.exit", "!.sql", "!configure", "!create", "!delete", "!purge", "!prune", "!sqlquery", "!umount", "!unmount", "*all*"'
+          filesetacl: '"*all*"'
+          catalogacl: '"*all*"'
+          whereacl: '"*all*"'
+          pluginoptionsacl: '"*all*"'
+
