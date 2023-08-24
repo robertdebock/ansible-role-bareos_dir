@@ -29,4 +29,3 @@
           catalogacl: '"*all*"'
           whereacl: '"*all*"'
           pluginoptionsacl: '"*all*"'
-
