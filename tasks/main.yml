@@ -60,7 +60,7 @@
   when:
     - bareos_dir_messages is defined
 
-- name: Place profiles
+- name: Place profile
   ansible.builtin.template:
     src: profile.conf.j2
     dest: "/etc/bareos/bareos-dir.d/profile/{{ item.name }}.conf"
@@ -72,6 +72,8 @@
     label: "{{ item.name }}"
   notify:
     - Restart bareos-dir
+  when:
+    - bareos_dir_profiles is defined
 
 - name: Start bareos-dir
   ansible.builtin.service:
