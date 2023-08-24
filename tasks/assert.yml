@@ -31,6 +31,20 @@
       - bareos_dir_max_concurrent_jobs is number
     quiet: yes
 
+- name: assert | Test if bareos_dir_tls_enable is set correctly
+  ansible.builtin.assert:
+    that:
+      - bareos_dir_tls_enable is defined
+      - bareos_dir_tls_enable is boolean
+    quiet: yes
+
+- name: assert | Test if bareos_dir_tls_verify_peer is set correctly
+  ansible.builtin.assert:
+    that:
+      - bareos_dir_tls_verify_peer is defined
+      - bareos_dir_tls_verify_peer is boolean
+    quiet: yes
+
 - name: assert | Test if bareos_dir_message is set correctly
   ansible.builtin.assert:
     that:
@@ -66,6 +80,30 @@
     label: "{{ item.name }}"
   when:
     - bareos_dir_clients is defined
+
+- name: assert | Test if tls_enable in bareos_dir_clients is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.tls_enable is boolean
+    quiet: yes
+  loop: "{{ bareos_dir_clients }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - bareos_dir_clients is defined
+    - item.tls_enable is defined
+
+- name: assert | Test if tls_verify_peer in bareos_dir_clients is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.tls_verify_peer is boolean
+    quiet: yes
+  loop: "{{ bareos_dir_clients }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - bareos_dir_clients is defined
+    - item.tls_verify_peer is defined
 
 - name: assert | Test if bareos_dir_messages is set correctly
   ansible.builtin.assert:
