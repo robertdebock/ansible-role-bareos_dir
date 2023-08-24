@@ -32,3 +32,6 @@ argument_specs:
       bareos_dir_messages:
         type: "list"
         description: "A list of messages to configure."
+      bareos_dir_profiles:
+        type: "list"
+        description: "A list of profiles to configure."
