@@ -4,6 +4,6 @@ Storage {
   Password = "{{ item.password }}"
   Device = "{{ item.device }}"
   Media Type = "{{ item.media_type }}"
-  tls_enable = {{ item.tls_enable | ternary('Yes', 'No') }}
-  tls_verify_peer = {{ item.tls_verify_peer | ternary('Yes', 'No') }}
+  TLS Enable = {{ item.tls_enable | ternary('Yes', 'No') }}
+  TLS Verify Peer = {{ item.tls_verify_peer | ternary('Yes', 'No') }}
 }
