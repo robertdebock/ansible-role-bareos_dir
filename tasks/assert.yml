@@ -73,7 +73,7 @@
       - item.media_type is string
       - item.media_type is not none
       - item.tls_enable is defined
-      - item.tls_enable is boolean  
+      - item.tls_enable is boolean
       - item.tls_verify_peer is defined
       - item.tls_verify_peer is boolean
     quiet: yes
