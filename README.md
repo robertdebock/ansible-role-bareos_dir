@@ -26,6 +26,14 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
         - name: client1
           address: 127.0.0.1
           password: "MySecretPassword"
+      bareos_dir_storages:
+        - name: File
+          address: dir-1
+          password: "MySecretPassword"
+          device: FileStorage
+          media_type: File
+          tls_enable: yes
+          tls_verify_peer: no
       bareos_dir_messages:
         - name: "Standard"
           director: "dir-1 = all, !skipped, !restored"
@@ -42,7 +50,6 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           catalogacl: '"*all*"'
           whereacl: '"*all*"'
           pluginoptionsacl: '"*all*"'
-
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-bareos_dir/blob/master/molecule/default/prepare.yml):
@@ -92,6 +99,16 @@ bareos_dir_tls_verify_peer: no
 #   - name: client1
 #     address: 127.0.0.1
 #     password: "MySecretPassword"
+
+# Configure devices found on the Storage Daemon.
+# bareos_dir_storages:
+#   - name: File
+#     address: dir-1
+#     password: "MySecretPassword"
+#     device: FileStorage
+#     media_type: File
+#     tls_enable: yes
+#     tls_verify_peer: no
 
 # bareos_dir_messages:
 #   - name: "Standard"

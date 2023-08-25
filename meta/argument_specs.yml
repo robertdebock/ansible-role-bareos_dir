@@ -23,6 +23,9 @@ argument_specs:
       bareos_dir_max_concurrent_jobs:
         type: "int"
         description: "The maximum number of concurrent jobs."
+      bareos_dir_storages:
+        type: "list"
+        description: "A list of storages to configure."
       bareos_dir_message:
         type: "str"
         description: "The messages to show."

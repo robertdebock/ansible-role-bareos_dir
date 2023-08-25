@@ -60,6 +60,21 @@
   when:
     - bareos_dir_clients is defined
 
+- name: Place storage
+  ansible.builtin.template:
+    src: storage.conf.j2
+    dest: "/etc/bareos/bareos-dir.d/storage/{{ item.name }}.conf"
+    owner: bareos
+    group: bareos
+    mode: "0640"
+  loop: "{{ bareos_dir_storages }}"
+  loop_control:
+    label: "{{ item.name }}"
+  notify:
+    - Restart bareos-dir
+  when:
+    - bareos_dir_storages is defined
+
 - name: Place message
   ansible.builtin.template:
     src: message.conf.j2
