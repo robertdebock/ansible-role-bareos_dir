@@ -9,38 +9,3 @@ bareos_dir_queryfile: "/usr/lib/bareos/scripts/query.sql"
 # bareos_dir_message: Daemon # <- Please set your own.
 bareos_dir_tls_enable: yes
 bareos_dir_tls_verify_peer: no
-
-# You need to configure Director with all clients.
-# bareos_dir_clients:
-#   - name: client1
-#     address: 127.0.0.1
-#     password: "MySecretPassword"
-
-# Configure devices found on the Storage Daemon.
-# bareos_dir_storages:
-#   - name: File
-#     address: dir-1
-#     password: "MySecretPassword"
-#     device: FileStorage
-#     media_type: File
-#     tls_enable: yes
-#     tls_verify_peer: no
-
-# bareos_dir_messages:
-#   - name: "Standard"
-#     director: "dir-1 = all, !skipped, !restored"
-#     description: "Send all messages to the Director."
-
-# You need to configure Director with profiles.
-# bareos_dir_profiles:
-#   - name: webui-admin
-#     jobacl: '"*all*"'
-#     clientacl: '"*all*"'
-#     storageacl: '"*all*"'
-#     scheduleacl: '"*all*"'
-#     poolacl: '"*all*"'
-#     commandacl: '"!.bvfs_clear_cache", "!.exit", "!.sql", "!configure", "!create", "!delete", "!purge", "!prune", "!sqlquery", "!umount", "!unmount", "*all*"'
-#     filesetacl: '"*all*"'
-#     catalogacl: '"*all*"'
-#     whereacl: '"*all*"'
-#     pluginoptionsacl: '"*all*"'

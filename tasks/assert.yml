@@ -157,12 +157,30 @@
       - item.name is defined
       - item.name is string
       - item.name is not none
-      - item.director is defined
-      - item.director is string
-      - item.director is not none
       - item.description is defined
       - item.description is string
       - item.description is not none
+      - item.operatorcommand is defined
+      - item.operatorcommand is string
+      - item.operatorcommand is not none
+      - item.mailcommand is defined
+      - item.mailcommand is string
+      - item.mailcommand is not none
+      - item.operator is defined
+      - item.operator is string
+      - item.operator is not none
+      - item.mail is defined
+      - item.mail is string
+      - item.mail is not none
+      - item.console is defined
+      - item.console is string
+      - item.console is not none
+      - item.append is defined
+      - item.append is string
+      - item.append is not none
+      - item.catalog is defined
+      - item.catalog is string
+      - item.catalog is not none
     quiet: yes
   loop: "{{ bareos_dir_messages }}"
   loop_control:
@@ -186,35 +204,25 @@
       - item.name is string
       - item.name is not none
       - item.jobacl is defined
-      - item.jobacl is string
-      - item.jobacl is not none
+      - item.jobacl is iterable
       - item.clientacl is defined
-      - item.clientacl is string
-      - item.clientacl is not none
+      - item.clientacl is iterable
       - item.storageacl is defined
-      - item.storageacl is string
-      - item.storageacl is not none
+      - item.storageacl is iterable
       - item.scheduleacl is defined
-      - item.scheduleacl is string
-      - item.scheduleacl is not none
+      - item.scheduleacl is iterable
       - item.poolacl is defined
-      - item.poolacl is string
-      - item.poolacl is not none
+      - item.poolacl is iterable
       - item.commandacl is defined
-      - item.commandacl is string
-      - item.commandacl is not none
+      - item.commandacl is iterable
       - item.filesetacl is defined
-      - item.filesetacl is string
-      - item.filesetacl is not none
+      - item.filesetacl is iterable
       - item.catalogacl is defined
-      - item.catalogacl is string
-      - item.catalogacl is not none
+      - item.catalogacl is iterable
       - item.whereacl is defined
-      - item.whereacl is string
-      - item.whereacl is not none
+      - item.whereacl is iterable
       - item.pluginoptionsacl is defined
-      - item.pluginoptionsacl is string
-      - item.pluginoptionsacl is not none
+      - item.pluginoptionsacl is iterable
     quiet: yes
   loop: "{{ bareos_dir_profiles }}"
   loop_control:

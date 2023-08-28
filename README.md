@@ -36,20 +36,47 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           tls_verify_peer: no
       bareos_dir_messages:
         - name: "Standard"
-          director: "dir-1 = all, !skipped, !restored"
           description: "Send all messages to the Director."
+          operatorcommand: "/usr/bin/bsmtp -h localhost -f \"(Bareos) <%r>\" -s \"Bareos: Intervention needed for %j\" %r"
+          mailcommand: "/usr/bin/bsmtp -h localhost -f \"(Bareos) <%r>\" -s \"Bareos: %t %e of %c %l\" %r"
+          operator: "root = mount"
+          mail: "root = all, !skipped, !saved, !audit"
+          console: "all, !skipped, !saved, !audit"
+          append: "\"/var/log/bareos/bareos.log\" = all, !skipped, !saved, !audit"
+          catalog: "all, !skipped, !saved, !audit"
       bareos_dir_profiles:
         - name: webui-admin
-          jobacl: '"*all*"'
-          clientacl: '"*all*"'
-          storageacl: '"*all*"'
-          scheduleacl: '"*all*"'
-          poolacl: '"*all*"'
-          commandacl: '"!.bvfs_clear_cache", "!.exit", "!.sql", "!configure", "!create", "!delete", "!purge", "!prune", "!sqlquery", "!umount", "!unmount", "*all*"'
-          filesetacl: '"*all*"'
-          catalogacl: '"*all*"'
-          whereacl: '"*all*"'
-          pluginoptionsacl: '"*all*"'
+          jobacl:
+            - "*all*"
+          clientacl:
+            - "*all*"
+          storageacl:
+            - "*all*"
+          scheduleacl:
+            - "*all*"
+          poolacl:
+            - "*all*"
+          commandacl:
+            - "!.bvfs_clear_cache"
+            - "!.exit"
+            - "!.sql"
+            - "!configure"
+            - "!create"
+            - "!delete"
+            - "!purge"
+            - "!prune"
+            - "!sqlquery"
+            - "!umount"
+            - "!unmount"
+            - "*all*"
+          filesetacl:
+            - "*all*"
+          catalogacl:
+            - "*all*"
+          whereacl:
+            - "*all*"
+          pluginoptionsacl:
+            - "*all*"
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-bareos_dir/blob/master/molecule/default/prepare.yml):
@@ -93,41 +120,6 @@ bareos_dir_queryfile: "/usr/lib/bareos/scripts/query.sql"
 # bareos_dir_message: Daemon # <- Please set your own.
 bareos_dir_tls_enable: yes
 bareos_dir_tls_verify_peer: no
-
-# You need to configure Director with all clients.
-# bareos_dir_clients:
-#   - name: client1
-#     address: 127.0.0.1
-#     password: "MySecretPassword"
-
-# Configure devices found on the Storage Daemon.
-# bareos_dir_storages:
-#   - name: File
-#     address: dir-1
-#     password: "MySecretPassword"
-#     device: FileStorage
-#     media_type: File
-#     tls_enable: yes
-#     tls_verify_peer: no
-
-# bareos_dir_messages:
-#   - name: "Standard"
-#     director: "dir-1 = all, !skipped, !restored"
-#     description: "Send all messages to the Director."
-
-# You need to configure Director with profiles.
-# bareos_dir_profiles:
-#   - name: webui-admin
-#     jobacl: '"*all*"'
-#     clientacl: '"*all*"'
-#     storageacl: '"*all*"'
-#     scheduleacl: '"*all*"'
-#     poolacl: '"*all*"'
-#     commandacl: '"!.bvfs_clear_cache", "!.exit", "!.sql", "!configure", "!create", "!delete", "!purge", "!prune", "!sqlquery", "!umount", "!unmount", "*all*"'
-#     filesetacl: '"*all*"'
-#     catalogacl: '"*all*"'
-#     whereacl: '"*all*"'
-#     pluginoptionsacl: '"*all*"'
 ```
 
 ## [Requirements](#requirements)
