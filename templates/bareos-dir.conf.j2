@@ -1,11 +1,11 @@
 # {{ ansible_managed }}
 
 Director {
-  Name = {{ bareos_dir_hostname }}
+  Name = "{{ bareos_dir_hostname }}"
   Password = "{{ bareos_dir_password }}"
   QueryFile = "{{ bareos_dir_queryfile }}"
   Maximum Concurrent Jobs = {{ bareos_dir_max_concurrent_jobs }}
-  Messages = {{ bareos_dir_message }}
+  Messages = "{{ bareos_dir_message }}"
   TLS Enable = {{ bareos_dir_tls_enable | ternary('Yes', 'No') }}
   TLS Verify Peer = {{ bareos_dir_tls_verify_peer | ternary('Yes', 'No') }}
 }
