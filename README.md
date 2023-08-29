@@ -19,9 +19,6 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
   roles:
     - role: robertdebock.bareos_dir
-      bareos_dir_password: "secretpassword"
-      bareos_dir_max_concurrent_jobs: 10
-      bareos_dir_message: Daemon
       bareos_dir_clients:
         - name: client1
           address: 127.0.0.1
@@ -169,10 +166,10 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 
 # The director has these configuration parameters.
 bareos_dir_hostname: "{{ inventory_hostname }}"
-# bareos_dir_password: "secretpassword" # <- Please set your own password.
+bareos_dir_password: "secretpassword"
 bareos_dir_queryfile: "/usr/lib/bareos/scripts/query.sql"
-# bareos_dir_max_concurrent_jobs: 10 # <- Please set your own value.
-# bareos_dir_message: Daemon # <- Please set your own.
+bareos_dir_max_concurrent_jobs: 10
+bareos_dir_message: Daemon
 bareos_dir_tls_enable: yes
 bareos_dir_tls_verify_peer: no
 ```

@@ -15,6 +15,7 @@ argument_specs:
         description: "The hostname of the Director."
       bareos_dir_password:
         type: "str"
+        default: "secretpassword"
         description: "The password for the Director."
       bareos_dir_queryfile:
         type: "str"
@@ -22,28 +23,45 @@ argument_specs:
         description: "The query file."
       bareos_dir_max_concurrent_jobs:
         type: "int"
+        default: 10
         description: "The maximum number of concurrent jobs."
-      bareos_dir_storages:
-        type: "list"
-        description: "A list of storages to configure."
       bareos_dir_message:
         type: "str"
+        default: "Daemon"
         description: "The messages to show."
+      bareos_dir_tls_enable:
+        type: "bool"
+        default: yes
+        description: "Enable TLS."
+      bareos_dir_tls_verify_peer:
+        type: "bool"
+        default: no
+        description: "Verify the peer."
+      bareos_dir_storages:
+        type: "list"
+        default: []
+        description: "A list of storages to configure."
       bareos_dir_clients:
         type: "list"
+        default: []
         description: "A list of clients to configure."
       bareos_dir_messages:
         type: "list"
+        default: []
         description: "A list of messages to configure."
       bareos_dir_profiles:
         type: "list"
+        default: []
         description: "A list of profiles to configure."
       bareos_dir_jobs:
         type: "list"
+        default: []
         description: "A list of jobs to configure."
       bareos_dir_pools:
         type: "list"
+        default: []
         description: "A list of pools to configure."
       bareos_dir_filesets:
         type: "list"
+        default: []
         description: "A list of filesets to configure."
