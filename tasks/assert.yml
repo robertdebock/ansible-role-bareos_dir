@@ -175,9 +175,6 @@
       - item.console is defined
       - item.console is string
       - item.console is not none
-      - item.append is defined
-      - item.append is string
-      - item.append is not none
       - item.catalog is defined
       - item.catalog is string
       - item.catalog is not none
@@ -229,3 +226,15 @@
     label: "{{ item.name }}"
   when:
     - bareos_dir_profiles is defined
+
+- name: assert | Test if item.append in bareos_dir_profiles are set correctly
+  ansible.builtin.assert:
+    that:
+      - item.append is mapping
+    quiet: yes
+  loop: "{{ bareos_dir_profiles }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - bareos_dir_profiles is defined
+    - item.append is defined

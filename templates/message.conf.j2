@@ -8,6 +8,8 @@ Messages {
   operator = {{ item.operator }}
   mail = {{ item.mail }}
   console = {{ item.console }}
-  append = {{ item.append }}
+{% if item.append is defined %}
+  Append = "{{ item.append.file }}" = {{ item.append.messages | join(', ') }}
+{% endif %}
   catalog = {{ item.catalog }}
 }
