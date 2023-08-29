@@ -120,6 +120,21 @@
   when:
     - bareos_dir_jobs is defined
 
+- name: Place pool
+  ansible.builtin.template:
+    src: pool.conf.j2
+    dest: "/etc/bareos/bareos-dir.d/pool/{{ item.name }}.conf"
+    owner: bareos
+    group: bareos
+    mode: "0640"
+  loop: "{{ bareos_dir_pools }}"
+  loop_control:
+    label: "{{ item.name }}"
+  notify:
+    - Restart bareos-dir
+  when:
+    - bareos_dir_pools is defined
+
 - name: Start bareos-dir
   ansible.builtin.service:
     name: bareos-dir

@@ -41,3 +41,6 @@ argument_specs:
       bareos_dir_jobs:
         type: "list"
         description: "A list of jobs to configure."
+      bareos_dir_pools:
+        type: "list"
+        description: "A list of pools to configure."

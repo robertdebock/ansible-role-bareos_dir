@@ -95,6 +95,15 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           fileset: LinuxAll
           storage: File
           messages: Standard
+      bareos_dir_pools:
+        - name: Full
+          pool_type: Backup
+          recycle: yes
+          autoprune: yes
+          volume_retention: 365 days
+          maximum_volume_bytes: 50G
+          maximum_volumes: 100
+          label_format: "Full-" 
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-bareos_dir/blob/master/molecule/default/prepare.yml):

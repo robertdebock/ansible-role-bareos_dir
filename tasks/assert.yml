@@ -309,3 +309,44 @@
     label: "{{ item.name }}"
   when:
     - bareos_dir_jobs is defined
+
+- name: assert | Test if bareos_dir_pools is set correctly
+  ansible.builtin.assert:
+    that:
+      - bareos_dir_pools is iterable
+      - bareos_dir_pools is not none
+    quiet: yes
+  when:
+    - bareos_dir_pools is defined
+
+- name: assert | Test if items in bareos_dir_pools are set correctly
+  ansible.builtin.assert:
+    that:
+      - item.name is defined
+      - item.name is string
+      - item.name is not none
+      - item.pool_type is defined
+      - item.pool_type is string
+      - item.pool_type is not none
+      - item.pool_type in [ "Backup", "Archive", "Cloned", "Migration", "Copy", "Save" ]
+      - item.recycle is defined
+      - item.recycle is boolean
+      - item.autoprune is defined
+      - item.autoprune is boolean
+      - item.volume_retention is defined
+      - item.volume_retention is string
+      - item.volume_retention is not none
+      - item.maximum_volume_bytes is defined
+      - item.maximum_volume_bytes is string
+      - item.maximum_volume_bytes is not none
+      - item.maximum_volumes is defined
+      - item.maximum_volumes is number
+      - item.label_format is defined
+      - item.label_format is string
+      - item.label_format is not none
+    quiet: yes
+  loop: "{{ bareos_dir_pools }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - bareos_dir_pools is defined

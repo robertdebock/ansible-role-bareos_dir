@@ -1,0 +1,12 @@
+{{ ansible_managed | comment }}
+
+Pool {
+  Name = {{ item.name }}
+  Pool Type = {{ item.pool_type }}
+  Recycle = {{ item.recycle | ternary('Yes', 'No') }}
+  AutoPrune = {{ item.autoprune | ternary('Yes', 'No') }}
+  Volume Retention = {{ item.volume_retention }}
+  Maximum Volume Bytes = {{ item.maximum_volume_bytes }}
+  Maximum Volumes = {{ item.maximum_volumes }}
+  Label Format = "{{ item.label_format }}"
+}
