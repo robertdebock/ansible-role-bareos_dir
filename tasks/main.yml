@@ -105,6 +105,21 @@
   when:
     - bareos_dir_profiles is defined
 
+- name: Place job
+  ansible.builtin.template:
+    src: job.conf.j2
+    dest: "/etc/bareos/bareos-dir.d/job/{{ item.name }}.conf"
+    owner: bareos
+    group: bareos
+    mode: "0640"
+  loop: "{{ bareos_dir_jobs }}"
+  loop_control:
+    label: "{{ item.name }}"
+  notify:
+    - Restart bareos-dir
+  when:
+    - bareos_dir_jobs is defined
+
 - name: Start bareos-dir
   ansible.builtin.service:
     name: bareos-dir

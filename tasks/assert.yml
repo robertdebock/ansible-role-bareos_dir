@@ -265,3 +265,47 @@
   when:
     - bareos_dir_profiles is defined
     - item.append is defined
+
+- name: assert | Test if bareos_dir_jobs is set correctly
+  ansible.builtin.assert:
+    that:
+      - bareos_dir_jobs is iterable
+      - bareos_dir_jobs is not none
+    quiet: yes
+  when:
+    - bareos_dir_jobs is defined
+
+- name: assert | Test if items in bareos_dir_jobs are set correctly
+  ansible.builtin.assert:
+    that:
+      - item.name is defined
+      - item.name is string
+      - item.name is not none
+      - item.description is defined
+      - item.description is string
+      - item.description is not none
+      - item.pool is defined
+      - item.pool is string
+      - item.pool is not none
+      - item.type is defined
+      - item.type is string
+      - item.type is not none
+      - item.type in [ "Backup", "Restore", "Verify", "Admin", "Migrate", "Copy", "Consolidate" ]
+      - item.client is defined
+      - item.client is string
+      - item.client is not none
+      - item.fileset is defined
+      - item.fileset is string
+      - item.fileset is not none
+      - item.storage is defined
+      - item.storage is string
+      - item.storage is not none
+      - item.messages is defined
+      - item.messages is string
+      - item.messages is not none
+    quiet: yes
+  loop: "{{ bareos_dir_jobs }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - bareos_dir_jobs is defined

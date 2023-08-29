@@ -73,3 +73,12 @@
             - "*all*"
           pluginoptionsacl:
             - "*all*"
+      bareos_dir_jobs:
+        - name: my_job
+          description: "My backup job"
+          pool: Full
+          type: Backup
+          client: client1
+          fileset: LinuxAll
+          storage: File
+          messages: Standard

@@ -86,6 +86,15 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
             - "*all*"
           pluginoptionsacl:
             - "*all*"
+      bareos_dir_jobs:
+        - name: my_job
+          description: "My backup job"
+          pool: Full
+          type: Backup
+          client: client1
+          fileset: LinuxAll
+          storage: File
+          messages: Standard
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-bareos_dir/blob/master/molecule/default/prepare.yml):

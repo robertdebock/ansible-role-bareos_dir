@@ -1,0 +1,12 @@
+# {{ ansible_managed }}
+
+Job {
+  Name = "{{ item.name }}"
+  Description = "{{ item.description }}"
+  Pool = "{{ item.pool }}"
+  Type = "{{ item.type }}"
+  Client = "{{ item.client }}"
+  FileSet = "{{ item.fileset }}"
+  Storage = "{{ item.storage }}"
+  Messages = "{{ item.messages }}"
+}
