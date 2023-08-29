@@ -1,6 +1,6 @@
 # [bareos_dir](#bareos_dir)
 
-Install and configure [BareOS](https://www.bareos.com/) Director on your system.
+Install and configure [BareOS](https://www.bareos.com/) Director.
 
 |GitHub|GitLab|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
