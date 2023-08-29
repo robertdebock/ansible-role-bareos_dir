@@ -350,3 +350,41 @@
     label: "{{ item.name }}"
   when:
     - bareos_dir_pools is defined
+
+- name: assert | Test if bareos_dir_filesets is set correctly
+  ansible.builtin.assert:
+    that:
+      - bareos_dir_filesets is iterable
+      - bareos_dir_filesets is not none
+    quiet: yes
+  when:
+    - bareos_dir_filesets is defined
+
+- name: assert | Test if items in bareos_dir_filesets are set correctly
+  ansible.builtin.assert:
+    that:
+      - item.name is defined
+      - item.name is string
+      - item.name is not none
+      - item.include is defined
+      - item.include is mapping
+      - item.include.files is defined
+      - item.include.files is iterable
+      - item.include.files is not none
+      - item.include.options is defined
+      - item.include.options is mapping
+      - item.include.options is not none
+      - item.include.options.fs_types is defined
+      - item.include.options.fs_types is iterable
+      - item.include.options.fs_types is not none
+      - item.exclude is defined
+      - item.exclude is mapping
+      - item.exclude.files is defined
+      - item.exclude.files is iterable
+      - item.exclude.files is not none
+    quiet: yes
+  loop: "{{ bareos_dir_filesets }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - bareos_dir_filesets is defined

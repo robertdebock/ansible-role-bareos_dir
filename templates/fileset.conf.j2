@@ -1,0 +1,23 @@
+{{ ansible_managed | comment }}
+
+FileSet {
+  Name = "{{ item.name }}"
+  Description = "{{ item.description }}"
+  Include {
+    Options {
+      Signature = {{ item.include.options.signature }}
+      One FS = {{ item.include.options.one_fs | ternary('Yes', 'No') }}
+{% for fs_type in item.include.options.fs_types %}
+      FS Type = {{ fs_type }}
+{% endfor %}
+    }
+{% for file in item.include.files %}
+    File = {{ file }}
+{% endfor %}
+  }
+  Exclude {
+{% for file in item.exclude.files %}
+    File = {{ file }}
+{% endfor %}
+  }
+}

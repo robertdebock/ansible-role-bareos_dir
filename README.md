@@ -104,7 +104,35 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           maximum_volume_bytes: 50G
           maximum_volumes: 100
           label_format: "Full-" 
-```
+      bareos_dir_filesets:
+        - name: LinuxAll
+          description: "Backup all regular filesystems, determined by filesystem type."
+          include:
+            files:
+              - /
+            options:
+              signature: MD5
+              one_fs: no
+              fs_types:
+                - btrfs
+                - ext2
+                - ext3
+                - ext4
+                - reiserfs
+                - jfs
+                - vfat
+                - xfs
+                - zfs
+          exclude:
+            files:
+              - /var/lib/bareos
+              - /var/lib/bareos/storage
+              - /proc
+              - /tmp
+              - /var/tmp
+              - /.journal
+              - /.fsck
+    ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-bareos_dir/blob/master/molecule/default/prepare.yml):
 

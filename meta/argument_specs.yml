@@ -44,3 +44,6 @@ argument_specs:
       bareos_dir_pools:
         type: "list"
         description: "A list of pools to configure."
+      bareos_dir_filesets:
+        type: "list"
+        description: "A list of filesets to configure."
