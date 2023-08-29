@@ -23,20 +23,23 @@
           tls_verify_peer: no
       bareos_dir_messages:
         - name: "Standard"
-          description: "Send all messages to the Director."
-          operatorcommand: "/usr/bin/bsmtp -h localhost -f \"(Bareos) <%r>\" -s \"Bareos: Intervention needed for %j\" %r"
-          mailcommand: "/usr/bin/bsmtp -h localhost -f \"(Bareos) <%r>\" -s \"Bareos: %t %e of %c %l\" %r"
-          operator: "root = mount"
-          mail: "root = all, !skipped, !saved, !audit"
-          console: "all, !skipped, !saved, !audit"
+          description: "Send relevant messages to the Director."
+          director:
+            server: bareos-dir
+            messages:
+              - all
+              - "!skipped"
+              - "!restored"
           append:
             file: "/var/log/bareos/bareos.log"
             messages:
               - all
               - "!skipped"
               - "!terminate"
-              - "!audit"
-          catalog: "all, !skipped, !saved, !audit"
+          console:
+            - all
+            - "!skipped"
+            - "!saved"
       bareos_dir_profiles:
         - name: webui-admin
           jobacl:
