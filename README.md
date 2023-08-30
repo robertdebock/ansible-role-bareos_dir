@@ -85,6 +85,22 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
             - "*all*"
           pluginoptionsacl:
             - "*all*"
+      bareos_dir_jobdefs:
+        - name: DefaultJob
+          enabled: no
+        - name: DefaultJob-1
+          type: Backup
+          level: Incremental
+          fileset: SelfTest
+          schedule: WeeklyCycle
+          storage: File-1
+          message: Standard
+          pool: Full
+          priority: 10
+          write_bootstrap: "/var/lib/bareos/%c.bsr"
+          full_backup_pool: Full
+          differential_backup_pool: Differential
+          incremental_backup_pool: Incremental
       bareos_dir_jobs:
         - name: my_job
           description: "My backup job"

@@ -63,3 +63,7 @@ argument_specs:
         type: "list"
         default: []
         description: "A list of filesets to configure."
+      bareos_dir_jobdefs:
+        type: "list"
+        default: []
+        description: "A list of jobdefs to configure."

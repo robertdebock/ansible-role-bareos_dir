@@ -152,6 +152,21 @@
   when:
     - bareos_dir_filesets is defined
 
+- name: Place jobdef
+  ansible.builtin.template:
+    src: jobdef.conf.j2
+    dest: "/etc/bareos/bareos-dir.d/jobdef/{{ item.name }}.conf"
+    owner: bareos
+    group: bareos
+    mode: "0640"
+  loop: "{{ bareos_dir_jobdefs }}"
+  loop_control:
+    label: "{{ item.name }}"
+  notify:
+    - Reload bareos-dir
+  when:
+    - bareos_dir_jobdefs is defined
+
 - name: Start bareos-dir
   ansible.builtin.service:
     name: bareos-dir
