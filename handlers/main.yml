@@ -12,6 +12,11 @@
   when:
     - item.stdout is defined
 
+- name: Reload bareos-dir
+  ansible.builtin.service:
+    name: bareos-dir
+    state: reloaded
+
 - name: Restart bareos-dir
   ansible.builtin.service:
     name: bareos-dir

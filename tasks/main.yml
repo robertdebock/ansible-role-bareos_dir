@@ -18,6 +18,8 @@
 - name: Install packages
   ansible.builtin.package:
     name: "{{ bareos_dir_packages }}"
+  notify:
+    - Restart bareos-dir
 
 - name: Run database setup scripts
   ansible.builtin.command:
@@ -43,7 +45,7 @@
     group: bareos
     mode: "0640"
   notify:
-    - Restart bareos-dir
+    - Reload bareos-dir
 
 - name: Place client
   ansible.builtin.template:
@@ -56,7 +58,7 @@
   loop_control:
     label: "{{ item.name }}"
   notify:
-    - Restart bareos-dir
+    - Reload bareos-dir
   when:
     - bareos_dir_clients is defined
 
@@ -71,7 +73,7 @@
   loop_control:
     label: "{{ item.name }}"
   notify:
-    - Restart bareos-dir
+    - Reload bareos-dir
   when:
     - bareos_dir_storages is defined
 
@@ -86,7 +88,7 @@
   loop_control:
     label: "{{ item.name }}"
   notify:
-    - Restart bareos-dir
+    - Reload bareos-dir
   when:
     - bareos_dir_messages is defined
 
@@ -101,7 +103,7 @@
   loop_control:
     label: "{{ item.name }}"
   notify:
-    - Restart bareos-dir
+    - Reload bareos-dir
   when:
     - bareos_dir_profiles is defined
 
@@ -116,7 +118,7 @@
   loop_control:
     label: "{{ item.name }}"
   notify:
-    - Restart bareos-dir
+    - Reload bareos-dir
   when:
     - bareos_dir_jobs is defined
 
@@ -131,7 +133,7 @@
   loop_control:
     label: "{{ item.name }}"
   notify:
-    - Restart bareos-dir
+    - Reload bareos-dir
   when:
     - bareos_dir_pools is defined
 
@@ -146,7 +148,7 @@
   loop_control:
     label: "{{ item.name }}"
   notify:
-    - Restart bareos-dir
+    - Reload bareos-dir
   when:
     - bareos_dir_filesets is defined
 
