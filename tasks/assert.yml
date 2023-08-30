@@ -437,9 +437,9 @@
       - item.storage is defined
       - item.storage is string
       - item.storage is not none
-      - item.message is defined
-      - item.message is string
-      - item.message is not none
+      - item.messages is defined
+      - item.messages is string
+      - item.messages is not none
       - item.pool is defined
       - item.pool is string
       - item.pool is not none

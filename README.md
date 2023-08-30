@@ -94,7 +94,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           fileset: SelfTest
           schedule: WeeklyCycle
           storage: File-1
-          message: Standard
+          messages: Standard
           pool: Full
           priority: 10
           write_bootstrap: "/var/lib/bareos/%c.bsr"
