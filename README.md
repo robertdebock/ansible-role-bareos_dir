@@ -24,8 +24,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           address: 127.0.0.1
           password: "MySecretPassword"
       bareos_dir_storages:
-        - name: File
-          enabled: no
+        # - name: File
+        #   enabled: no
         - name: File-1
           address: dir-1
           password: "MySecretPassword"
@@ -86,8 +86,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           pluginoptionsacl:
             - "*all*"
       bareos_dir_jobdefs:
-        - name: DefaultJob
-          enabled: no
+        # - name: DefaultJob
+        #   enabled: no
         - name: DefaultJob-1
           type: Backup
           level: Incremental
