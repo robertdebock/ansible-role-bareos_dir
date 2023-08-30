@@ -108,7 +108,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           type: Backup
           client: client1
           fileset: LinuxAll
-          storage: File
+          storage: File-1
           messages: Standard
       bareos_dir_pools:
         - name: Full
