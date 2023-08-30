@@ -1,5 +1,6 @@
 {{ ansible_managed | comment }}
 
+{% if item.enabled is defined and item.enabled or item.enabled is not defined %}
 Storage {
   Name = "{{ item.name }}"
   Address = "{{ item.address }}"
@@ -9,3 +10,6 @@ Storage {
   TLS Enable = {{ item.tls_enable | ternary('Yes', 'No') }}
   TLS Verify Peer = {{ item.tls_verify_peer | ternary('Yes', 'No') }}
 }
+{% else %}
+# This file is not enabled.
+{% endif %}

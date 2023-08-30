@@ -54,7 +54,7 @@
   when:
     - bareos_dir_storages is defined
 
-- name: assert | Test if items in bareos_dir_storages are set correctly
+- name: assert | Test if items in bareos_dir_storages are set correctly when enabled
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -82,6 +82,26 @@
     label: "{{ item.name }}"
   when:
     - bareos_dir_storages is defined
+    - item.enabled is not defined or
+      (item.enabled is defined and item.enabled)
+
+- name: assert | Test if items in bareos_dir_storages are set correctly when not enabled
+  ansible.builtin.assert:
+    that:
+      - item.name is defined
+      - item.name is string
+      - item.name is not none
+      - item.enabled is defined
+      - item.enabled is boolean
+    quiet: yes
+  loop: "{{ bareos_dir_storages }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - bareos_dir_storages is defined
+    - item.enabled is defined
+    - not item.enabled
+
 - name: assert | Test if bareos_dir_message is set correctly
   ansible.builtin.assert:
     that:

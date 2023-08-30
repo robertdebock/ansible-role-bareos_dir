@@ -12,6 +12,8 @@
           password: "MySecretPassword"
       bareos_dir_storages:
         - name: File
+          enabled: no
+        - name: File-1
           address: dir-1
           password: "MySecretPassword"
           device: FileStorage

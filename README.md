@@ -25,6 +25,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           password: "MySecretPassword"
       bareos_dir_storages:
         - name: File
+          enabled: no
+        - name: File-1
           address: dir-1
           password: "MySecretPassword"
           device: FileStorage
