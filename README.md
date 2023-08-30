@@ -190,6 +190,15 @@ bareos_dir_max_concurrent_jobs: 10
 bareos_dir_message: Daemon
 bareos_dir_tls_enable: yes
 bareos_dir_tls_verify_peer: no
+
+bareos_dir_clients: []
+bareos_dir_storages: []
+bareos_dir_messages: []
+bareos_dir_profiles: []
+bareos_dir_pools: []
+bareos_dir_filesets: []
+bareos_dir_jobs: []
+bareos_dir_jobdefs: []
 ```
 
 ## [Requirements](#requirements)
