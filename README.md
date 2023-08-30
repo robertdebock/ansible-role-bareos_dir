@@ -100,7 +100,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           volume_retention: 365 days
           maximum_volume_bytes: 50G
           maximum_volumes: 100
-          label_format: "Full-" 
+          label_format: "Full-"
       bareos_dir_filesets:
         - name: LinuxAll
           description: "Backup all regular filesystems, determined by filesystem type."
