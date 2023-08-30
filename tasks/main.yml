@@ -155,7 +155,7 @@
 - name: Place jobdef
   ansible.builtin.template:
     src: jobdef.conf.j2
-    dest: "/etc/bareos/bareos-dir.d/jobdef/{{ item.name }}.conf"
+    dest: "/etc/bareos/bareos-dir.d/jobdefs/{{ item.name }}.conf"
     owner: bareos
     group: bareos
     mode: "0640"
