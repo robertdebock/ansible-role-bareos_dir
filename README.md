@@ -147,7 +147,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
               - /var/tmp
               - /.journal
               - /.fsck
-    ```
+```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-bareos_dir/blob/master/molecule/default/prepare.yml):
 
