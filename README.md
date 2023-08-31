@@ -124,11 +124,20 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           level: Full
           fileset: Catalog
           client: client-1
-          schedule: WeeklyCycleAfterBackupCatalog
+          schedule: WeeklyCycleAfterBackup
           runbeforejob: "/usr/lib/bareos/scripts/make_catalog_backup MyCatalog"
           runafterjob: "/usr/lib/bareos/scripts/delete_catalog_backup MyCatalog"
           write_bootstrap: '|/usr/bin/bsmtp -h localhost -f \"\(Bareos\) \" -s \"Bootstrap for Job %j\" root'
           priority: 11
+        - name: RestoreFiles
+          description: "Standard Restore template. Only one such job is needed for all standard Jobs/Clients/Storage ..."
+          type: Restore
+          client: client-1
+          fileset: LinuxAll
+          storage: File-sd-1
+          pool: Incremental
+          messages: Standard
+          where: "/tmp/bareos-restores"
 
       bareos_dir_pools:
         - name: Full

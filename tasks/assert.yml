@@ -524,6 +524,21 @@
       (item.enabled is defined and item.enabled)
     - item.runafterjob is defined
 
+- name: assert | Test if item.where in bareos_dir_jobs is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.where is string
+      - item.where is not none
+    quiet: yes
+  loop: "{{ bareos_dir_jobs }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - bareos_dir_jobs is defined
+    - item.enabled is not defined or
+      (item.enabled is defined and item.enabled)
+    - item.where is defined
+
 - name: assert | Test if items in bareos_dir_jobs are set correctly when not enabled
   ansible.builtin.assert:
     that:

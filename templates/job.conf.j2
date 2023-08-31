@@ -33,6 +33,9 @@ Job {
 {% if item.runafterjob is defined %}
   Run After Job = "{{ item.runafterjob }}"
 {% endif %}
+{% if item.where is defined %}
+  Where = "{{ item.where }}"
+{% endif %}
 }
 {% else %}
 # This file is not enabled.
