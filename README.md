@@ -44,6 +44,12 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
               - all
               - "!skipped"
               - "!terminate"
+          catalog:
+            messages:
+              - all
+              - "!skipped"
+              - "!saved"
+              - "!audit"
           console:
             - all
             - "!skipped"

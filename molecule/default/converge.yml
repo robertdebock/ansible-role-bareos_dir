@@ -31,6 +31,12 @@
               - all
               - "!skipped"
               - "!terminate"
+          catalog:
+            messages:
+              - all
+              - "!skipped"
+              - "!saved"
+              - "!audit"
           console:
             - all
             - "!skipped"

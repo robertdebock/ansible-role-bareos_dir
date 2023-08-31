@@ -226,6 +226,22 @@
       (item.enabled is defined and item.enabled)
     - item.append is defined
 
+- name: assert | Test if item.catalog in bareos_dir_messages are set correctly
+  ansible.builtin.assert:
+    that:
+      - item.catalog is mapping
+      - item.catalog.messages is defined
+      - item.catalog.messages is iterable
+    quiet: yes
+  loop: "{{ bareos_dir_messages }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - bareos_dir_messages is defined
+    - item.enabled is not defined or
+      (item.enabled is defined and item.enabled)
+    - item.catalog is defined
+
 - name: assert | Test if item.console in bareos_dir_messages are set correctly
   ansible.builtin.assert:
     that:
