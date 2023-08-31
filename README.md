@@ -20,7 +20,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   roles:
     - role: robertdebock.bareos_dir
       bareos_dir_clients:
-        - name: client1
+        - name: client-1
           address: 127.0.0.1
           password: "MySecretPassword"
         - name: "disabled-client"
@@ -112,7 +112,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           description: "My backup job"
           pool: Full
           type: Backup
-          client: client1
+          client: client-1
           fileset: LinuxAll
           storage: File-1
           messages: Standard
@@ -123,7 +123,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           jobdefs: DefaultJob
           level: Full
           fileset: Catalog
-          client: dir-1
+          client: client-1
           schedule: WeeklyCycleAfterBackupCatalog
           runbeforejob: "/usr/lib/bareos/scripts/make_catalog_backup MyCatalog"
           runafterjob: "/usr/lib/bareos/scripts/delete_catalog_backup MyCatalog"
