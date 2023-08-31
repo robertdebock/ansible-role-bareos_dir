@@ -13,7 +13,6 @@ bareos_dir_packages:
   - bareos-database-postgresql
   - bareos-database-tools
   - bareos-director
-  # - bareos-webui # <- No sure if this is required.
 
 # A list of script to setup the database.
 bareos_dir_install_scripts:
