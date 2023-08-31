@@ -23,9 +23,9 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
         - name: client1
           address: 127.0.0.1
           password: "MySecretPassword"
+        - name: "disabled-client"
+          enabled: no
       bareos_dir_storages:
-        # - name: File
-        #   enabled: no
         - name: File-1
           address: dir-1
           password: "MySecretPassword"
@@ -33,6 +33,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           media_type: File
           tls_enable: yes
           tls_verify_peer: no
+        - name: "disabled-storage"
+          enabled: no
       bareos_dir_messages:
         - name: "Standard"
           description: "Send relevant messages to the Director."
@@ -52,6 +54,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
             - all
             - "!skipped"
             - "!saved"
+        - name: "disabled-message"
+          enabled: no
       bareos_dir_profiles:
         - name: webui-admin
           jobacl:
@@ -85,9 +89,9 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
             - "*all*"
           pluginoptionsacl:
             - "*all*"
+        - name: "disabled-message"
+          enabled: no
       bareos_dir_jobdefs:
-        # - name: DefaultJob
-        #   enabled: no
         - name: DefaultJob-1
           type: Backup
           level: Incremental
@@ -101,6 +105,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           full_backup_pool: Full
           differential_backup_pool: Differential
           incremental_backup_pool: Incremental
+        - name: "disabled-jobdef"
+          enabled: no
       bareos_dir_jobs:
         - name: my_job
           description: "My backup job"
@@ -110,6 +116,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           fileset: LinuxAll
           storage: File-1
           messages: Standard
+        - name: disabled_job
+          enabled: no
       bareos_dir_pools:
         - name: Full
           pool_type: Backup
@@ -119,6 +127,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           maximum_volume_bytes: 50G
           maximum_volumes: 100
           label_format: "Full-"
+        - name: "disabled-pool"
+          enabled: no
       bareos_dir_filesets:
         - name: LinuxAll
           description: "Backup all regular filesystems, determined by filesystem type."
@@ -147,6 +157,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
               - /var/tmp
               - /.journal
               - /.fsck
+        - name: disabled-fileset
+          enabled: no
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-bareos_dir/blob/master/molecule/default/prepare.yml):

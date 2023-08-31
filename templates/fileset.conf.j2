@@ -1,5 +1,6 @@
 {{ ansible_managed | comment }}
 
+{% if item.enabled is defined and item.enabled or item.enabled is not defined %}
 FileSet {
   Name = "{{ item.name }}"
   Description = "{{ item.description }}"
@@ -21,3 +22,6 @@ FileSet {
 {% endfor %}
   }
 }
+{% else %}
+# This file is not enabled.
+{% endif %}

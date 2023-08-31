@@ -1,5 +1,6 @@
 {{ ansible_managed | comment }}
 
+{% if item.enabled is defined and item.enabled or item.enabled is not defined %}
 Pool {
   Name = {{ item.name }}
   Pool Type = {{ item.pool_type }}
@@ -10,3 +11,6 @@ Pool {
   Maximum Volumes = {{ item.maximum_volumes }}
   Label Format = "{{ item.label_format }}"
 }
+{% else %}
+# This file is not enabled.
+{% endif %}

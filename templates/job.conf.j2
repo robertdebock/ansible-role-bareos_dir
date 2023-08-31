@@ -1,5 +1,6 @@
 {{ ansible_managed | comment }}
 
+{% if item.enabled is defined and item.enabled or item.enabled is not defined %}
 Job {
   Name = "{{ item.name }}"
   Description = "{{ item.description }}"
@@ -10,3 +11,6 @@ Job {
   Storage = "{{ item.storage }}"
   Messages = "{{ item.messages }}"
 }
+{% else %}
+# This file is not enabled.
+{% endif %}

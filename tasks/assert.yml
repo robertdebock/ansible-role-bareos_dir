@@ -119,7 +119,7 @@
   when:
     - bareos_dir_clients is defined
 
-- name: assert | Test if items in bareos_dir_clients are set correctly
+- name: assert | Test if items in bareos_dir_clients are set correctly when enabled
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -137,6 +137,8 @@
     label: "{{ item.name }}"
   when:
     - bareos_dir_clients is defined
+    - item.enabled is not defined or
+      (item.enabled is defined and item.enabled)
 
 - name: assert | Test if tls_enable in bareos_dir_clients is set correctly
   ansible.builtin.assert:
@@ -162,6 +164,23 @@
     - bareos_dir_clients is defined
     - item.tls_verify_peer is defined
 
+- name: assert | Test if items in bareos_dir_clients are set correctly when not enabled
+  ansible.builtin.assert:
+    that:
+      - item.name is defined
+      - item.name is string
+      - item.name is not none
+      - item.enabled is defined
+      - item.enabled is boolean
+    quiet: yes
+  loop: "{{ bareos_dir_clients }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - bareos_dir_clients is defined
+    - item.enabled is defined
+    - not item.enabled
+
 - name: assert | Test if bareos_dir_messages is set correctly
   ansible.builtin.assert:
     that:
@@ -170,7 +189,7 @@
   when:
     - bareos_dir_messages is defined
 
-- name: assert | Test if items in bareos_dir_messages are set correctly
+- name: assert | Test if items in bareos_dir_messages are set correctly when enabled
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -185,6 +204,8 @@
     label: "{{ item.name }}"
   when:
     - bareos_dir_messages is defined
+    - item.enabled is not defined or
+      (item.enabled is defined and item.enabled)
 
 - name: assert | Test if item.director in bareos_dir_messages are set correctly
   ansible.builtin.assert:
@@ -201,6 +222,8 @@
     label: "{{ item.name }}"
   when:
     - bareos_dir_messages is defined
+    - item.enabled is not defined or
+      (item.enabled is defined and item.enabled)
     - item.director is defined
 
 - name: assert | Test if item.append in bareos_dir_messages are set correctly
@@ -218,6 +241,8 @@
     label: "{{ item.name }}"
   when:
     - bareos_dir_messages is defined
+    - item.enabled is not defined or
+      (item.enabled is defined and item.enabled)
     - item.append is defined
 
 - name: assert | Test if item.console in bareos_dir_messages are set correctly
@@ -230,7 +255,26 @@
     label: "{{ item.name }}"
   when:
     - bareos_dir_messages is defined
+    - item.enabled is not defined or
+      (item.enabled is defined and item.enabled)
     - item.console is defined
+
+- name: assert | Test if items in bareos_dir_messages are set correctly when not enabled
+  ansible.builtin.assert:
+    that:
+      - item.name is defined
+      - item.name is string
+      - item.name is not none
+      - item.enabled is defined
+      - item.enabled is boolean
+    quiet: yes
+  loop: "{{ bareos_dir_messages }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - bareos_dir_messages is defined
+    - item.enabled is defined
+    - not item.enabled
 
 - name: assert | Test if bareos_dir_profiles is set correctly
   ansible.builtin.assert:
@@ -241,7 +285,7 @@
   when:
     - bareos_dir_profiles is defined
 
-- name: assert | Test if items in bareos_dir_profiles are set correctly
+- name: assert | Test if items in bareos_dir_profiles are set correctly when enabled
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -273,6 +317,8 @@
     label: "{{ item.name }}"
   when:
     - bareos_dir_profiles is defined
+    - item.enabled is not defined or
+      (item.enabled is defined and item.enabled)
 
 - name: assert | Test if item.append in bareos_dir_profiles are set correctly
   ansible.builtin.assert:
@@ -284,7 +330,26 @@
     label: "{{ item.name }}"
   when:
     - bareos_dir_profiles is defined
+    - item.enabled is not defined or
+      (item.enabled is defined and item.enabled)
     - item.append is defined
+
+- name: assert | Test if items in bareos_dir_profiles are set correctly when not enabled
+  ansible.builtin.assert:
+    that:
+      - item.name is defined
+      - item.name is string
+      - item.name is not none
+      - item.enabled is defined
+      - item.enabled is boolean
+    quiet: yes
+  loop: "{{ bareos_dir_profiles }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - bareos_dir_profiles is defined
+    - item.enabled is defined
+    - not item.enabled
 
 - name: assert | Test if bareos_dir_jobs is set correctly
   ansible.builtin.assert:
@@ -295,7 +360,7 @@
   when:
     - bareos_dir_jobs is defined
 
-- name: assert | Test if items in bareos_dir_jobs are set correctly
+- name: assert | Test if items in bareos_dir_jobs are set correctly when enabled
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -329,6 +394,25 @@
     label: "{{ item.name }}"
   when:
     - bareos_dir_jobs is defined
+    - item.enabled is not defined or
+      (item.enabled is defined and item.enabled)
+
+- name: assert | Test if items in bareos_dir_jobs are set correctly when not enabled
+  ansible.builtin.assert:
+    that:
+      - item.name is defined
+      - item.name is string
+      - item.name is not none
+      - item.enabled is defined
+      - item.enabled is boolean
+    quiet: yes
+  loop: "{{ bareos_dir_jobs }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - bareos_dir_jobs is defined
+    - item.enabled is defined
+    - not item.enabled
 
 - name: assert | Test if bareos_dir_pools is set correctly
   ansible.builtin.assert:
@@ -339,7 +423,7 @@
   when:
     - bareos_dir_pools is defined
 
-- name: assert | Test if items in bareos_dir_pools are set correctly
+- name: assert | Test if items in bareos_dir_pools are set correctly when enabled
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -370,6 +454,25 @@
     label: "{{ item.name }}"
   when:
     - bareos_dir_pools is defined
+    - item.enabled is not defined or
+      (item.enabled is defined and item.enabled)
+
+- name: assert | Test if items in bareos_dir_pools are set correctly when not enabled
+  ansible.builtin.assert:
+    that:
+      - item.name is defined
+      - item.name is string
+      - item.name is not none
+      - item.enabled is defined
+      - item.enabled is boolean
+    quiet: yes
+  loop: "{{ bareos_dir_pools }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - bareos_dir_pools is defined
+    - item.enabled is defined
+    - not item.enabled
 
 - name: assert | Test if bareos_dir_filesets is set correctly
   ansible.builtin.assert:
@@ -380,7 +483,7 @@
   when:
     - bareos_dir_filesets is defined
 
-- name: assert | Test if items in bareos_dir_filesets are set correctly
+- name: assert | Test if items in bareos_dir_filesets are set correctly when enabled
   ansible.builtin.assert:
     that:
       - item.name is defined
@@ -408,6 +511,25 @@
     label: "{{ item.name }}"
   when:
     - bareos_dir_filesets is defined
+    - item.enabled is not defined or
+      (item.enabled is defined and item.enabled)
+
+- name: assert | Test if items in bareos_dir_filesets are set correctly when not enabled
+  ansible.builtin.assert:
+    that:
+      - item.name is defined
+      - item.name is string
+      - item.name is not none
+      - item.enabled is defined
+      - item.enabled is boolean
+    quiet: yes
+  loop: "{{ bareos_dir_filesets }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - bareos_dir_filesets is defined
+    - item.enabled is defined
+    - not item.enabled
 
 - name: assert | Test if bareos_dir_jobdefs is set correctly
   ansible.builtin.assert:

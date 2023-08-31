@@ -1,5 +1,6 @@
 {{ ansible_managed | comment }}
 
+{% if item.enabled is defined and item.enabled or item.enabled is not defined %}
 Client {
   Name = "{{ item.name }}"
   Address = "{{ item.address }}"
@@ -11,3 +12,6 @@ Client {
    TLS Verify Peer = {{ item.tls_verify_peer | ternary('Yes', 'No') }}
 {% endif %}
 }
+{% else %}
+# This file is not enabled.
+{% endif %}
