@@ -16,8 +16,3 @@
   ansible.builtin.service:
     name: bareos-dir
     state: reloaded
-
-- name: Restart bareos-dir
-  ansible.builtin.service:
-    name: bareos-dir
-    state: restarted
