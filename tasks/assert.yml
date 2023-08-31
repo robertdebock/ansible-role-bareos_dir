@@ -214,6 +214,35 @@
     - item.enabled is not defined or
       (item.enabled is defined and item.enabled)
 
+- name: assert | Test if item.mailcommand in bareos_dir_messages are set correctly
+  ansible.builtin.assert:
+    that:
+      - item.mailcommand is string
+      - item.mailcommand is not none
+    quiet: yes
+  loop: "{{ bareos_dir_messages }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - bareos_dir_messages is defined
+    - item.enabled is not defined or
+      (item.enabled is defined and item.enabled)
+    - item.mailcommand is defined
+
+- name: assert | Test if item.mail in bareos_dir_messages are set correctly
+  ansible.builtin.assert:
+    that:
+      - item.mail is iterable
+    quiet: yes
+  loop: "{{ bareos_dir_messages }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - bareos_dir_messages is defined
+    - item.enabled is not defined or
+      (item.enabled is defined and item.enabled)
+    - item.mail is defined 
+
 - name: assert | Test if item.append in bareos_dir_messages are set correctly
   ansible.builtin.assert:
     that:

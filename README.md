@@ -56,6 +56,29 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
             - "!saved"
         - name: "disabled-message"
           enabled: no
+        - name: Daemon
+          description: "Message delivery for daemon messages (no job)."
+          mailcommand: '/usr/bin/bsmtp -h localhost -f \"\(Bareos\) \<%r\>\" -s \"Bareos daemon message\" %r'
+          mail:
+            - to: root
+              messages:
+                - all
+                - "!skipped"
+                - "!audit"
+          console:
+            - all
+            - "!skipped"
+            - "!saved"
+            - "!audit"
+          append:
+            - file: "/var/log/bareos/bareos.log"
+              messages:
+                - all
+                - "!skipped"
+                - "!audit"
+            - file: "/var/log/bareos/bareos-audit.log"
+              messages:
+                - audit
       bareos_dir_profiles:
         - name: webui-admin
           jobacl:
@@ -107,7 +130,6 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           incremental_backup_pool: Incremental
         - name: "disabled-jobdef"
           enabled: no
-
       bareos_dir_jobs:
         - name: my_job
           description: "My backup job"
@@ -135,11 +157,10 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           type: Restore
           client: client-1
           fileset: LinuxAll
-          storage: File-sd-1
+          storage: File-1
           pool: Incremental
           messages: Standard
           where: "/tmp/bareos-restores"
-
       bareos_dir_pools:
         - name: Full
           pool_type: Backup
