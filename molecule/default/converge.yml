@@ -111,7 +111,7 @@
           level: Full
           fileset: Catalog
           client: client-1
-          schedule: WeeklyCycleAfterBackupCatalog
+          schedule: WeeklyCycleAfterBackup
           runbeforejob: "/usr/lib/bareos/scripts/make_catalog_backup MyCatalog"
           runafterjob: "/usr/lib/bareos/scripts/delete_catalog_backup MyCatalog"
           write_bootstrap: '|/usr/bin/bsmtp -h localhost -f \"\(Bareos\) \" -s \"Bootstrap for Job %j\" root'
