@@ -40,11 +40,11 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
         - name: "Standard"
           description: "Send relevant messages to the Director."
           append:
-            file: "/var/log/bareos/bareos.log"
-            messages:
-              - all
-              - "!skipped"
-              - "!terminate"
+            - file: "/var/log/bareos/bareos.log"
+              messages:
+                - all
+                - "!skipped"
+                - "!terminate"
           catalog:
             - all
             - "!skipped"

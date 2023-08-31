@@ -5,7 +5,9 @@ Messages {
   Name = "{{ item.name }}"
   Description = "{{ item.description }}"
 {% if item.append is defined %}
-  Append = "{{ item.append.file }}" = {{ item.append.messages | join(', ') }}
+{% for append in item.append %}
+  Append = "{{ append.file }}" = {{ append.messages | join(', ') }}
+{% endfor %}
 {% endif %}
 {% if item.catalog is defined %}
   Catalog = {{ item.catalog | join(', ') }}

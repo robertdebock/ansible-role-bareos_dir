@@ -217,12 +217,7 @@
 - name: assert | Test if item.append in bareos_dir_messages are set correctly
   ansible.builtin.assert:
     that:
-      - item.append is mapping
-      - item.append.file is defined
-      - item.append.file is string
-      - item.append.file is not none
-      - item.append.messages is defined
-      - item.append.messages is iterable
+      - item.append is iterable
     quiet: yes
   loop: "{{ bareos_dir_messages }}"
   loop_control:
