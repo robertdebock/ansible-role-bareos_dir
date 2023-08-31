@@ -241,7 +241,7 @@
     - bareos_dir_messages is defined
     - item.enabled is not defined or
       (item.enabled is defined and item.enabled)
-    - item.mail is defined 
+    - item.mail is defined
 
 - name: assert | Test if item.append in bareos_dir_messages are set correctly
   ansible.builtin.assert:
