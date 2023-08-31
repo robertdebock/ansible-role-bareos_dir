@@ -122,7 +122,7 @@
           type: Restore
           client: client-1
           fileset: LinuxAll
-          storage: File-sd-1
+          storage: File-1
           pool: Incremental
           messages: Standard
           where: "/tmp/bareos-restores"
