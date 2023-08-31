@@ -19,6 +19,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
   roles:
     - role: robertdebock.bareos_dir
+      bareos_dir_backup_configurations: yes
       bareos_dir_clients:
         - name: client-1
           address: 127.0.0.1
