@@ -106,6 +106,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           incremental_backup_pool: Incremental
         - name: "disabled-jobdef"
           enabled: no
+
       bareos_dir_jobs:
         - name: my_job
           description: "My backup job"
@@ -117,6 +118,18 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           messages: Standard
         - name: disabled_job
           enabled: no
+        - name: BackupCatalog
+          description: "Backup the catalog database (after the nightly save)"
+          jobdefs: DefaultJob
+          level: Full
+          fileset: Catalog
+          client: dir-1
+          schedule: WeeklyCycleAfterBackupCatalog
+          runbeforejob: "/usr/lib/bareos/scripts/make_catalog_backup MyCatalog"
+          runafterjob: "/usr/lib/bareos/scripts/delete_catalog_backup MyCatalog"
+          write_bootstrap: '|/usr/bin/bsmtp -h localhost -f \"\(Bareos\) \" -s \"Bootstrap for Job %j\" root'
+          priority: 11
+
       bareos_dir_pools:
         - name: Full
           pool_type: Backup

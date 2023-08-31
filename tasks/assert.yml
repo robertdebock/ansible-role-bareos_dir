@@ -364,25 +364,12 @@
       - item.description is defined
       - item.description is string
       - item.description is not none
-      - item.pool is defined
-      - item.pool is string
-      - item.pool is not none
-      - item.type is defined
-      - item.type is string
-      - item.type is not none
-      - item.type in [ "Backup", "Restore", "Verify", "Admin", "Migrate", "Copy", "Consolidate" ]
       - item.client is defined
       - item.client is string
       - item.client is not none
       - item.fileset is defined
       - item.fileset is string
       - item.fileset is not none
-      - item.storage is defined
-      - item.storage is string
-      - item.storage is not none
-      - item.messages is defined
-      - item.messages is string
-      - item.messages is not none
     quiet: yes
   loop: "{{ bareos_dir_jobs }}"
   loop_control:
@@ -391,6 +378,144 @@
     - bareos_dir_jobs is defined
     - item.enabled is not defined or
       (item.enabled is defined and item.enabled)
+
+- name: assert | Test if item.pool is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.pool is string
+      - item.pool is not none
+    quiet: yes
+  loop: "{{ bareos_dir_jobs }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - bareos_dir_jobs is defined
+    - item.enabled is not defined or
+      (item.enabled is defined and item.enabled)
+    - item.pool is defined
+
+- name: assert | Test if item.type is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.type is string
+      - item.type is not none
+      - item.type in [ "Backup", "Restore", "Admin", "Copy", "Migration", "Verify", "Prune", "Label", "Migrate", "Update", "Delete", "RunBeforeJob", "RunAfterJob", "Catalog", "Messages", "Where", "PluginOptions" ]
+    quiet: yes
+  loop: "{{ bareos_dir_jobs }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - bareos_dir_jobs is defined
+    - item.enabled is not defined or
+      (item.enabled is defined and item.enabled)
+    - item.type is defined
+
+- name: assert | Test if item.storage is defined
+  ansible.builtin.assert:
+    that:
+      - item.storage is string
+      - item.storage is not none
+    quiet: yes
+  loop: "{{ bareos_dir_jobs }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - bareos_dir_jobs is defined
+    - item.enabled is not defined or
+      (item.enabled is defined and item.enabled)
+    - item.storage is defined
+
+- name: assert | Test if item.message is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.message is string
+      - item.message is not none
+      - item.message in [ "Standard", "Client", "Director", "Storage", "All", "None" ]
+    quiet: yes
+  loop: "{{ bareos_dir_jobs }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - bareos_dir_jobs is defined
+    - item.enabled is not defined or
+      (item.enabled is defined and item.enabled)
+    - item.message is defined
+
+- name: assert | Test if item.jobdefs is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.jobdefs is string
+      - item.jobdefs is not none
+    quiet: yes
+  loop: "{{ bareos_dir_jobs }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - bareos_dir_jobs is defined
+    - item.enabled is not defined or
+      (item.enabled is defined and item.enabled)
+    - item.jobdefs is defined
+
+- name: assert | Test if item.level in bareos_dir_jobs is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.level is string
+      - item.level is not none
+      - item.level in [ "Full", "Incremental", "Differential", "VirtualFull" ]
+    quiet: yes
+  loop: "{{ bareos_dir_jobs }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - bareos_dir_jobs is defined
+    - item.enabled is not defined or
+      (item.enabled is defined and item.enabled)
+    - item.level is defined
+
+- name: assert | Test if item.schedule in bareos_dir_jobs is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.schedule is string
+      - item.schedule is not none
+    quiet: yes
+  loop: "{{ bareos_dir_jobs }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - bareos_dir_jobs is defined
+    - item.enabled is not defined or
+      (item.enabled is defined and item.enabled)
+    - item.schedule is defined
+
+- name: assert | Test if item.runbeforejob in bareos_dir_jobs is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.runbeforejob is string
+      - item.runbeforejob is not none
+    quiet: yes
+  loop: "{{ bareos_dir_jobs }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - bareos_dir_jobs is defined
+    - item.enabled is not defined or
+      (item.enabled is defined and item.enabled)
+    - item.runbeforejob is defined
+
+- name: assert | Test if item.runafterjob in bareos_dir_jobs is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.runafterjob is string
+      - item.runafterjob is not none
+    quiet: yes
+  loop: "{{ bareos_dir_jobs }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - bareos_dir_jobs is defined
+    - item.enabled is not defined or
+      (item.enabled is defined and item.enabled)
+    - item.runafterjob is defined
 
 - name: assert | Test if items in bareos_dir_jobs are set correctly when not enabled
   ansible.builtin.assert:
