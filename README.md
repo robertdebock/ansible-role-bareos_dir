@@ -38,12 +38,6 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
       bareos_dir_messages:
         - name: "Standard"
           description: "Send relevant messages to the Director."
-          director:
-            server: bareos-dir
-            messages:
-              - all
-              - "!skipped"
-              - "!restored"
           append:
             file: "/var/log/bareos/bareos.log"
             messages:

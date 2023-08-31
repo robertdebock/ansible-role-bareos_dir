@@ -207,25 +207,6 @@
     - item.enabled is not defined or
       (item.enabled is defined and item.enabled)
 
-- name: assert | Test if item.director in bareos_dir_messages are set correctly
-  ansible.builtin.assert:
-    that:
-      - item.director is mapping
-      - item.director.server is defined
-      - item.director.server is string
-      - item.director.server is not none
-      - item.director.messages is defined
-      - item.director.messages is iterable
-    quiet: yes
-  loop: "{{ bareos_dir_messages }}"
-  loop_control:
-    label: "{{ item.name }}"
-  when:
-    - bareos_dir_messages is defined
-    - item.enabled is not defined or
-      (item.enabled is defined and item.enabled)
-    - item.director is defined
-
 - name: assert | Test if item.append in bareos_dir_messages are set correctly
   ansible.builtin.assert:
     that:
