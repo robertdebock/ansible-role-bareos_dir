@@ -207,6 +207,7 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 # defaults file for bareos_dir
 
 # The director has these configuration parameters.
+bareos_dir_backup_configurations: no
 bareos_dir_hostname: "{{ inventory_hostname }}"
 bareos_dir_password: "secretpassword"
 bareos_dir_queryfile: "/usr/lib/bareos/scripts/query.sql"

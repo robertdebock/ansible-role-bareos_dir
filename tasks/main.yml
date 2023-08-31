@@ -48,6 +48,7 @@
     owner: bareos
     group: bareos
     mode: "0640"
+    backup: "{{ bareos_dir_backup_configurations }}"
   notify:
     - Reload bareos-dir
 
@@ -58,6 +59,7 @@
     owner: bareos
     group: bareos
     mode: "0640"
+    backup: "{{ bareos_dir_backup_configurations }}"
   loop: "{{ bareos_dir_clients }}"
   loop_control:
     label: "{{ item.name }}"
@@ -73,6 +75,7 @@
     owner: bareos
     group: bareos
     mode: "0640"
+    backup: "{{ bareos_dir_backup_configurations }}"
   loop: "{{ bareos_dir_storages }}"
   loop_control:
     label: "{{ item.name }}"
@@ -88,6 +91,7 @@
     owner: bareos
     group: bareos
     mode: "0640"
+    backup: "{{ bareos_dir_backup_configurations }}"
   loop: "{{ bareos_dir_messages }}"
   loop_control:
     label: "{{ item.name }}"
@@ -103,6 +107,7 @@
     owner: bareos
     group: bareos
     mode: "0644"
+    backup: "{{ bareos_dir_backup_configurations }}"
   loop: "{{ bareos_dir_profiles }}"
   loop_control:
     label: "{{ item.name }}"
@@ -118,6 +123,7 @@
     owner: bareos
     group: bareos
     mode: "0640"
+    backup: "{{ bareos_dir_backup_configurations }}"
   loop: "{{ bareos_dir_jobs }}"
   loop_control:
     label: "{{ item.name }}"
@@ -133,6 +139,7 @@
     owner: bareos
     group: bareos
     mode: "0640"
+    backup: "{{ bareos_dir_backup_configurations }}"
   loop: "{{ bareos_dir_pools }}"
   loop_control:
     label: "{{ item.name }}"
@@ -148,6 +155,7 @@
     owner: bareos
     group: bareos
     mode: "0640"
+    backup: "{{ bareos_dir_backup_configurations }}"
   loop: "{{ bareos_dir_filesets }}"
   loop_control:
     label: "{{ item.name }}"
@@ -163,6 +171,7 @@
     owner: bareos
     group: bareos
     mode: "0640"
+    backup: "{{ bareos_dir_backup_configurations }}"
   loop: "{{ bareos_dir_jobdefs }}"
   loop_control:
     label: "{{ item.name }}"
