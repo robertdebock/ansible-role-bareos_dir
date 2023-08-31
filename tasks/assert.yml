@@ -229,9 +229,7 @@
 - name: assert | Test if item.catalog in bareos_dir_messages are set correctly
   ansible.builtin.assert:
     that:
-      - item.catalog is mapping
-      - item.catalog.messages is defined
-      - item.catalog.messages is iterable
+      - item.catalog is iterable
     quiet: yes
   loop: "{{ bareos_dir_messages }}"
   loop_control:

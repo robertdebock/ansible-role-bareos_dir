@@ -45,11 +45,10 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
               - "!skipped"
               - "!terminate"
           catalog:
-            messages:
-              - all
-              - "!skipped"
-              - "!saved"
-              - "!audit"
+            - all
+            - "!skipped"
+            - "!saved"
+            - "!audit"
           console:
             - all
             - "!skipped"

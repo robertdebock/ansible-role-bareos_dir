@@ -8,7 +8,7 @@ Messages {
   Append = "{{ item.append.file }}" = {{ item.append.messages | join(', ') }}
 {% endif %}
 {% if item.catalog is defined %}
-  Catalog = {{ item.catalog.messages | join(', ') }}
+  Catalog = {{ item.catalog | join(', ') }}
 {% endif %}
 {% if item.console is defined %}
   Console = {{ item.console | join(', ') }}
