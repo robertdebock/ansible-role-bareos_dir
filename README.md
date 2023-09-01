@@ -35,7 +35,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           jobacl:
             - "*all"
       bareos_dir_clients:
-        - name: client-1
+        - name: bareos-fd
           address: 127.0.0.1
           password: "MySecretPassword"
         - name: "disabled-client"
@@ -91,7 +91,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           description: "My backup job"
           pool: Full
           type: Backup
-          client: client-1
+          client: bareos-fd
           fileset: LinuxAll
           storage: File-1
           messages: Standard
@@ -102,7 +102,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           jobdefs: DefaultJob
           level: Full
           fileset: Catalog
-          client: client-1
+          client: bareos-fd
           schedule: WeeklyCycleAfterBackup
           runbeforejob: "/usr/lib/bareos/scripts/make_catalog_backup MyCatalog"
           runafterjob: "/usr/lib/bareos/scripts/delete_catalog_backup MyCatalog"
@@ -154,7 +154,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
         - name: RestoreFiles
           description: "Standard Restore template. Only one such job is needed for all standard Jobs/Clients/Storage ..."
           type: Restore
-          client: client-1
+          client: bareos-fd
           fileset: LinuxAll
           storage: File-1
           pool: Incremental
@@ -352,11 +352,11 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|all|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8, 9|
+|[Debian](https://hub.docker.com/repository/docker/robertdebock/debian/general)|bookworm, bullseye, buster|
+|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|all|
 |[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|37|
 |[opensuse](https://hub.docker.com/repository/docker/robertdebock/opensuse/general)|all|
-|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|jammy|
+|[Ubuntu](https://hub.docker.com/repository/docker/robertdebock/ubuntu/general)|jammy, focal|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
