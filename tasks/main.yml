@@ -48,6 +48,7 @@
     mode: "0640"
     backup: "{{ bareos_dir_backup_configurations }}"
   notify:
+    - Check configuration
     - Reload bareos-dir
 
 - name: Place client
@@ -62,6 +63,7 @@
   loop_control:
     label: "{{ item.name }}"
   notify:
+    - Check configuration
     - Reload bareos-dir
   when:
     - bareos_dir_clients is defined
@@ -78,6 +80,7 @@
   loop_control:
     label: "{{ item.name }}"
   notify:
+    - Check configuration
     - Reload bareos-dir
   when:
     - bareos_dir_storages is defined
@@ -94,6 +97,7 @@
   loop_control:
     label: "{{ item.name }}"
   notify:
+    - Check configuration
     - Reload bareos-dir
   when:
     - bareos_dir_messages is defined
@@ -110,6 +114,7 @@
   loop_control:
     label: "{{ item.name }}"
   notify:
+    - Check configuration
     - Reload bareos-dir
   when:
     - bareos_dir_profiles is defined
@@ -126,6 +131,7 @@
   loop_control:
     label: "{{ item.name }}"
   notify:
+    - Check configuration
     - Reload bareos-dir
   when:
     - bareos_dir_jobs is defined
@@ -142,6 +148,7 @@
   loop_control:
     label: "{{ item.name }}"
   notify:
+    - Check configuration
     - Reload bareos-dir
   when:
     - bareos_dir_pools is defined
@@ -158,6 +165,7 @@
   loop_control:
     label: "{{ item.name }}"
   notify:
+    - Check configuration
     - Reload bareos-dir
   when:
     - bareos_dir_filesets is defined
@@ -174,6 +182,7 @@
   loop_control:
     label: "{{ item.name }}"
   notify:
+    - Check configuration
     - Reload bareos-dir
   when:
     - bareos_dir_jobdefs is defined
