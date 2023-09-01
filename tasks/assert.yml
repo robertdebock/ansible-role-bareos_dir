@@ -52,6 +52,14 @@
       - bareos_dir_backup_configurations is boolean
     quiet: yes
 
+- name: assert | Test if bareos_dir_message is set correctly
+  ansible.builtin.assert:
+    that:
+      - bareos_dir_message is defined
+      - bareos_dir_message is string
+      - bareos_dir_message is not none
+    quiet: yes
+
 - name: assert | Test if bareos_dir_storages is set correctly
   ansible.builtin.assert:
     that:
