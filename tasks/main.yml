@@ -53,7 +53,7 @@
 
 - name: Place client
   ansible.builtin.template:
-    src: client-fd.conf.j2
+    src: client.conf.j2
     dest: "/etc/bareos/bareos-dir.d/client/{{ item.name }}.conf"
     owner: bareos
     group: bareos
