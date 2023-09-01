@@ -30,7 +30,7 @@ argument_specs:
       bareos_dir_message:
         type: "str"
         default: "Daemon"
-        description: "The messages to show."
+        description: "The messages configuration to use."
       bareos_dir_tls_enable:
         type: "bool"
         default: yes
@@ -39,30 +39,15 @@ argument_specs:
         type: "bool"
         default: no
         description: "Verify the peer."
-      bareos_dir_storages:
+
+      bareos_dir_catalogs:
         type: "list"
         default: []
-        description: "A list of storages to configure."
+        description: "A list of catalogs to configure." 
       bareos_dir_clients:
         type: "list"
         default: []
         description: "A list of clients to configure."
-      bareos_dir_messages:
-        type: "list"
-        default: []
-        description: "A list of messages to configure."
-      bareos_dir_profiles:
-        type: "list"
-        default: []
-        description: "A list of profiles to configure."
-      bareos_dir_jobs:
-        type: "list"
-        default: []
-        description: "A list of jobs to configure."
-      bareos_dir_pools:
-        type: "list"
-        default: []
-        description: "A list of pools to configure."
       bareos_dir_filesets:
         type: "list"
         default: []
@@ -71,7 +56,23 @@ argument_specs:
         type: "list"
         default: []
         description: "A list of jobdefs to configure."
-      bareos_dir_catalogs:
+      bareos_dir_jobs:
         type: "list"
         default: []
-        description: "A list of catalogs to configure." 
+        description: "A list of jobs to configure."
+      bareos_dir_messages:
+        type: "list"
+        default: []
+        description: "A list of messages to configure."
+      bareos_dir_pools:
+        type: "list"
+        default: []
+        description: "A list of pools to configure."
+      bareos_dir_profiles:
+        type: "list"
+        default: []
+        description: "A list of profiles to configure."
+      bareos_dir_storages:
+        type: "list"
+        default: []
+        description: "A list of storages to configure."
