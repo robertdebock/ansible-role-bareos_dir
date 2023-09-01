@@ -5,8 +5,8 @@ Console {
   Name = "{{ item.name }}"
   Description = "{{ item.description }}"
   Password = "{{ item.password }}"
-  CommandACL = {{ item.command_acl | join(', ') }}
-  JobACL = {{ item.job_acl | join(', ') }}
+  CommandACL = {{ item.commandacl | join(', ') }}
+  JobACL = {{ item.jobacl | join(', ') }}
 {% else %}
 # This file is not enabled.
 {% endif %}
