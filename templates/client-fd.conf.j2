@@ -6,10 +6,10 @@ Client {
   Address = "{{ item.address }}"
   Password = "{{ item.password }}"
 {% if item.tls_enable is defined %}
-   TLS Enable = {{ item.tls_enable | ternary('Yes', 'No') }}
+  TLS Enable = {{ item.tls_enable | ternary('Yes', 'No') }}
 {% endif %}
 {% if item.tls_verify_peer is defined %}
-   TLS Verify Peer = {{ item.tls_verify_peer | ternary('Yes', 'No') }}
+  TLS Verify Peer = {{ item.tls_verify_peer | ternary('Yes', 'No') }}
 {% endif %}
 }
 {% else %}
