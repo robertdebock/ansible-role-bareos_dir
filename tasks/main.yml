@@ -68,6 +68,23 @@
   when:
     - bareos_dir_catalogs is defined
 
+- name: Place console
+  ansible.builtin.template:
+    src: console.conf.j2
+    dest: "/etc/bareos/bareos-dir.d/console/{{ item.name }}.conf"
+    owner: bareos
+    group: bareos
+    mode: "0644"
+    backup: "{{ bareos_dir_backup_configurations }}"
+  loop: "{{ bareos_dir_consoles }}"
+  loop_control:
+    label: "{{ item.name }}"
+  notify:
+    - Check configuration
+    - Reload bareos-dir
+  when:
+    - bareos_dir_consoles is defined
+
 - name: Place client
   ansible.builtin.template:
     src: client.conf.j2

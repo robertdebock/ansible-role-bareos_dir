@@ -1,0 +1,12 @@
+{{ ansible_managed | comment }}
+
+{% if item.enabled is defined and item.enabled or item.enabled is not defined %}
+Console {
+  Name = "{{ item.name }}"
+  Description = "{{ item.description }}"
+  Password = "{{ item.password }}"
+  CommandACL = {{ item.command_acl | join(', ') }}
+  JobACL = {{ item.job_acl | join(', ') }}
+{% else %}
+# This file is not enabled.
+{% endif %}

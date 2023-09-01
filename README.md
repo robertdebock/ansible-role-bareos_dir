@@ -25,6 +25,15 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           dbname: bareos
           dbuser: bareos
           dbpassword: ""
+      bareos_dir_consoles:
+        - name: bareos-mon
+          description: "Restricted console used by tray-monitor to get the status of the director."
+          password: "MySecretPassword"
+          commandacl:
+            - status
+            - .status
+          jobacl:
+            - "*all"
       bareos_dir_clients:
         - name: client-1
           address: 127.0.0.1
@@ -270,6 +279,9 @@ bareos_dir_tls_verify_peer: no
 
 # A list of catalogs to configure.
 bareos_dir_catalogs: []
+
+# A list of consoled to configure.
+bareos_dir_consoles: []
 
 # A list of clients to configure.
 bareos_dir_clients: []

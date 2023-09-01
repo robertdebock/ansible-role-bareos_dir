@@ -69,6 +69,15 @@
   when:
     - bareos_dir_catalogs is defined
 
+- name: assert | Test if bareos_dir_consoles is set correctly
+  ansible.builtin.assert:
+    that:
+      - bareos_dir_consoles is iterable
+      - bareos_dir_consoles is not none
+    quiet: yes
+  when:
+    - bareos_dir_consoles is defined
+
 - name: assert | Test if bareos_dir_clients is set correctly
   ansible.builtin.assert:
     that:

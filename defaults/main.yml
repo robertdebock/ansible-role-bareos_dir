@@ -30,6 +30,9 @@ bareos_dir_tls_verify_peer: no
 # A list of catalogs to configure.
 bareos_dir_catalogs: []
 
+# A list of consoled to configure.
+bareos_dir_consoles: []
+
 # A list of clients to configure.
 bareos_dir_clients: []
 

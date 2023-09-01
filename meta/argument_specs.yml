@@ -39,11 +39,14 @@ argument_specs:
         type: "bool"
         default: no
         description: "Verify the peer."
-
       bareos_dir_catalogs:
         type: "list"
         default: []
         description: "A list of catalogs to configure."
+      bareos_dir_consoles:
+        type: "list"
+        default: []
+        description: "A list of consoled to configure."
       bareos_dir_clients:
         type: "list"
         default: []
