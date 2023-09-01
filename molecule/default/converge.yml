@@ -7,22 +7,85 @@
   roles:
     - role: ansible-role-bareos_dir
       bareos_dir_backup_configurations: yes
+      bareos_dir_catalogs:
+        - name: MyCatalog
+          dbname: bareos
+          dbuser: bareos
+          dbpassword: ""
       bareos_dir_clients:
         - name: client-1
           address: 127.0.0.1
           password: "MySecretPassword"
         - name: "disabled-client"
           enabled: no
-      bareos_dir_storages:
-        - name: File-1
-          address: dir-1
-          password: "MySecretPassword"
-          device: FileStorage
-          media_type: File
-          tls_enable: yes
-          tls_verify_peer: no
-        - name: "disabled-storage"
+      bareos_dir_filesets:
+        - name: LinuxAll
+          description: "Backup all regular filesystems, determined by filesystem type."
+          include:
+            files:
+              - /
+            options:
+              signature: MD5
+              one_fs: no
+              fs_types:
+                - btrfs
+                - ext2
+                - ext3
+                - ext4
+                - reiserfs
+                - jfs
+                - vfat
+                - xfs
+                - zfs
+          exclude:
+            files:
+              - /var/lib/bareos
+              - /var/lib/bareos/storage
+              - /proc
+              - /tmp
+              - /var/tmp
+              - /.journal
+              - /.fsck
+        - name: disabled-fileset
           enabled: no
+      bareos_dir_jobdefs:
+        - name: DefaultJob-1
+          type: Backup
+          level: Incremental
+          fileset: SelfTest
+          schedule: WeeklyCycle
+          storage: File-1
+          messages: Standard
+          pool: Full
+          priority: 10
+          write_bootstrap: "/var/lib/bareos/%c.bsr"
+          full_backup_pool: Full
+          differential_backup_pool: Differential
+          incremental_backup_pool: Incremental
+        - name: "disabled-jobdef"
+          enabled: no
+      bareos_dir_jobs:
+        - name: my_job
+          description: "My backup job"
+          pool: Full
+          type: Backup
+          client: client-1
+          fileset: LinuxAll
+          storage: File-1
+          messages: Standard
+        - name: disabled_job
+          enabled: no
+        - name: BackupCatalog
+          description: "Backup the catalog database (after the nightly save)"
+          jobdefs: DefaultJob
+          level: Full
+          fileset: Catalog
+          client: client-1
+          schedule: WeeklyCycleAfterBackup
+          runbeforejob: "/usr/lib/bareos/scripts/make_catalog_backup MyCatalog"
+          runafterjob: "/usr/lib/bareos/scripts/delete_catalog_backup MyCatalog"
+          write_bootstrap: '|/usr/bin/bsmtp -h localhost -f \"\(Bareos\) \" -s \"Bootstrap for Job %j\" root'
+          priority: 11
       bareos_dir_messages:
         - name: "Standard"
           description: "Send relevant messages to the Director."
@@ -66,6 +129,26 @@
             - file: "/var/log/bareos/bareos-audit.log"
               messages:
                 - audit
+        - name: RestoreFiles
+          description: "Standard Restore template. Only one such job is needed for all standard Jobs/Clients/Storage ..."
+          type: Restore
+          client: client-1
+          fileset: LinuxAll
+          storage: File-1
+          pool: Incremental
+          messages: Standard
+          where: "/tmp/bareos-restores"
+      bareos_dir_pools:
+        - name: Full
+          pool_type: Backup
+          recycle: yes
+          autoprune: yes
+          volume_retention: 365 days
+          maximum_volume_bytes: 50G
+          maximum_volumes: 100
+          label_format: "Full-"
+        - name: "disabled-pool"
+          enabled: no
       bareos_dir_profiles:
         - name: webui-admin
           jobacl:
@@ -101,96 +184,13 @@
             - "*all*"
         - name: "disabled-message"
           enabled: no
-      bareos_dir_jobdefs:
-        - name: DefaultJob-1
-          type: Backup
-          level: Incremental
-          fileset: SelfTest
-          schedule: WeeklyCycle
-          storage: File-1
-          messages: Standard
-          pool: Full
-          priority: 10
-          write_bootstrap: "/var/lib/bareos/%c.bsr"
-          full_backup_pool: Full
-          differential_backup_pool: Differential
-          incremental_backup_pool: Incremental
-        - name: "disabled-jobdef"
+      bareos_dir_storages:
+        - name: File-1
+          address: dir-1
+          password: "MySecretPassword"
+          device: FileStorage
+          media_type: File
+          tls_enable: yes
+          tls_verify_peer: no
+        - name: "disabled-storage"
           enabled: no
-      bareos_dir_jobs:
-        - name: my_job
-          description: "My backup job"
-          pool: Full
-          type: Backup
-          client: client-1
-          fileset: LinuxAll
-          storage: File-1
-          messages: Standard
-        - name: disabled_job
-          enabled: no
-        - name: BackupCatalog
-          description: "Backup the catalog database (after the nightly save)"
-          jobdefs: DefaultJob
-          level: Full
-          fileset: Catalog
-          client: client-1
-          schedule: WeeklyCycleAfterBackup
-          runbeforejob: "/usr/lib/bareos/scripts/make_catalog_backup MyCatalog"
-          runafterjob: "/usr/lib/bareos/scripts/delete_catalog_backup MyCatalog"
-          write_bootstrap: '|/usr/bin/bsmtp -h localhost -f \"\(Bareos\) \" -s \"Bootstrap for Job %j\" root'
-          priority: 11
-        - name: RestoreFiles
-          description: "Standard Restore template. Only one such job is needed for all standard Jobs/Clients/Storage ..."
-          type: Restore
-          client: client-1
-          fileset: LinuxAll
-          storage: File-1
-          pool: Incremental
-          messages: Standard
-          where: "/tmp/bareos-restores"
-      bareos_dir_pools:
-        - name: Full
-          pool_type: Backup
-          recycle: yes
-          autoprune: yes
-          volume_retention: 365 days
-          maximum_volume_bytes: 50G
-          maximum_volumes: 100
-          label_format: "Full-"
-        - name: "disabled-pool"
-          enabled: no
-      bareos_dir_filesets:
-        - name: LinuxAll
-          description: "Backup all regular filesystems, determined by filesystem type."
-          include:
-            files:
-              - /
-            options:
-              signature: MD5
-              one_fs: no
-              fs_types:
-                - btrfs
-                - ext2
-                - ext3
-                - ext4
-                - reiserfs
-                - jfs
-                - vfat
-                - xfs
-                - zfs
-          exclude:
-            files:
-              - /var/lib/bareos
-              - /var/lib/bareos/storage
-              - /proc
-              - /tmp
-              - /var/tmp
-              - /.journal
-              - /.fsck
-        - name: disabled-fileset
-          enabled: no
-      bareos_dir_catalogs:
-        - name: MyCatalog
-          dbname: bareos
-          dbuser: bareos
-          dbpassword: ""
