@@ -54,5 +54,8 @@ bareos_dir_pools: []
 # A list of profiles to configure.
 bareos_dir_profiles: []
 
+# A list of schedules to configure.
+bareos_dir_schedules: []
+
 # A list of storages to configure.
 bareos_dir_storages: []

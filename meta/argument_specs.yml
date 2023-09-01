@@ -75,6 +75,10 @@ argument_specs:
         type: "list"
         default: []
         description: "A list of profiles to configure."
+      bareos_dir_schedules:
+        type: "list"
+        default: []
+        description: "A list of schedules to configure."
       bareos_dir_storages:
         type: "list"
         default: []

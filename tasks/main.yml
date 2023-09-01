@@ -204,6 +204,23 @@
   when:
     - bareos_dir_profiles is defined
 
+- name: Place schedule
+  ansible.builtin.template:
+    src: schedule.conf.j2
+    dest: "/etc/bareos/bareos-dir.d/schedule/{{ item.name }}.conf"
+    owner: bareos
+    group: bareos
+    mode: "0644"
+    backup: "{{ bareos_dir_backup_configurations }}"
+  loop: "{{ bareos_dir_schedules }}"
+  loop_control:
+    label: "{{ item.name }}"
+  notify:
+    - Check configuration
+    - Reload bareos-dir
+  when:
+    - bareos_dir_schedules is defined
+
 - name: Place storage
   ansible.builtin.template:
     src: storage.conf.j2

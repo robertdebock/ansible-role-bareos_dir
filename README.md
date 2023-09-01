@@ -206,6 +206,18 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
             - "*all*"
         - name: "disabled-message"
           enabled: no
+      bareos_dir_schedules:
+        - name: WeeklyCycle
+          run:
+            - Full 1st sat at 21:00
+            - Differential 2nd-5th sat at 21:00
+            - Incremental mon-fri at 21:00
+        - name: WeeklyCycleAfterBackup
+          description: This schedule does the catalog. It starts after the WeeklyCycle.
+          run:
+            - Full mon-fri at 21:10
+        - name: "disabled-schedule"
+          enabled: no
       bareos_dir_storages:
         - name: File-1
           address: dir-1
@@ -303,6 +315,9 @@ bareos_dir_pools: []
 
 # A list of profiles to configure.
 bareos_dir_profiles: []
+
+# A list of schedules to configure.
+bareos_dir_schedules: []
 
 # A list of storages to configure.
 bareos_dir_storages: []

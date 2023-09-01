@@ -141,6 +141,15 @@
   when:
     - bareos_dir_profiles is defined
 
+- name: assert | Test if bareos_dir_schedules is set correctly
+  ansible.builtin.assert:
+    that:
+      - bareos_dir_schedules is iterable
+      - bareos_dir_schedules is not none
+    quiet: yes
+  when:
+    - bareos_dir_schedules is defined
+
 - name: assert | Test if bareos_dir_storages is set correctly
   ansible.builtin.assert:
     that:
