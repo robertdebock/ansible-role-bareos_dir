@@ -60,10 +60,6 @@
       - bareos_dir_tls_verify_peer is boolean
     quiet: yes
 
-
-
-
-
 - name: assert | Test if bareos_dir_catalogs is set correctly
   ansible.builtin.assert:
     that:
