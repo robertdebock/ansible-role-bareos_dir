@@ -189,3 +189,8 @@
               - /.fsck
         - name: disabled-fileset
           enabled: no
+      bareos_dir_catalogs:
+        - name: MyCatalog
+          dbname: bareos
+          dbuser: bareos
+          dbpassword: ""

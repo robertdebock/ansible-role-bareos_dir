@@ -71,3 +71,7 @@ argument_specs:
         type: "list"
         default: []
         description: "A list of jobdefs to configure."
+      bareos_dir_catalogs:
+        type: "list"
+        default: []
+        description: "A list of catalogs to configure." 

@@ -187,6 +187,23 @@
   when:
     - bareos_dir_jobdefs is defined
 
+- name: Place catalog
+  ansible.builtin.template:
+    src: catalog.conf.j2
+    dest: "/etc/bareos/bareos-dir.d/catalog/{{ item.name }}.conf"
+    owner: bareos
+    group: bareos
+    mode: "0640"
+    backup: "{{ bareos_dir_backup_configurations }}"
+  loop: "{{ bareos_dir_catalogs }}"
+  loop_control:
+    label: "{{ item.name }}"
+  notify:
+    - Check configuration
+    - Reload bareos-dir
+  when:
+    - bareos_dir_catalogs is defined
+
 - name: Start bareos-dir
   ansible.builtin.service:
     name: bareos-dir

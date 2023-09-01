@@ -202,6 +202,11 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
               - /.fsck
         - name: disabled-fileset
           enabled: no
+      bareos_dir_catalogs:
+        - name: MyCatalog
+          dbname: bareos
+          dbuser: bareos
+          dbpassword: ""
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-bareos_dir/blob/master/molecule/default/prepare.yml):
@@ -255,6 +260,7 @@ bareos_dir_pools: []
 bareos_dir_filesets: []
 bareos_dir_jobs: []
 bareos_dir_jobdefs: []
+bareos_dir_catalogs: []
 ```
 
 ## [Requirements](#requirements)
