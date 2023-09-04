@@ -9,6 +9,8 @@
     # The roles buildtools, python_pip and postgres are required.
     # bareos-dir needs to connect to a database.
     - role: robertdebock.buildtools
+    # EPEL is required for RHEL7.
+    - role: robertdebock.epel
     - role: robertdebock.python_pip
     - role: robertdebock.postgres
     # The roles core_dependencies and postfix are  required for the `bareos_role`: "dir".
