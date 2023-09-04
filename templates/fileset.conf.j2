@@ -20,11 +20,13 @@ FileSet {
     File = {{ file }}
 {% endfor %}
   }
+{% if item.exclude is defined %}
   Exclude {
 {% for file in item.exclude.files %}
     File = {{ file }}
 {% endfor %}
   }
+{% endif %}
 }
 {% else %}
 # This file is not enabled.
