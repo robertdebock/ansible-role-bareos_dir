@@ -10,7 +10,7 @@ Console {
 {% if item.commandacl is defined %}
   CommandACL = {{ item.commandacl | join(', ') }}
 {% endif %}
-{% if item.jobacl s defined %}
+{% if item.jobacl is defined %}
   JobACL = {{ item.jobacl | join(', ') }}
 {% endif %}
 {% if item.tlsenable is defined %}
