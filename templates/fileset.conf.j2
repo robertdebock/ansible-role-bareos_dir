@@ -7,7 +7,9 @@ FileSet {
   Include {
     Options {
       Signature = {{ item.include.options.signature }}
+{% if item.include.options.one_fs is defined %}
       One FS = {{ item.include.options.one_fs | ternary('Yes', 'No') }}
+{% endif %}
 {% for fs_type in item.include.options.fs_types %}
       FS Type = {{ fs_type }}
 {% endfor %}
