@@ -10,9 +10,11 @@ FileSet {
 {% if item.include.options.one_fs is defined %}
       One FS = {{ item.include.options.one_fs | ternary('Yes', 'No') }}
 {% endif %}
+{% if item.include.options.fs_types is defined %}
 {% for fs_type in item.include.options.fs_types %}
       FS Type = {{ fs_type }}
 {% endfor %}
+{% endif %}
     }
 {% for file in item.include.files %}
     File = {{ file }}
