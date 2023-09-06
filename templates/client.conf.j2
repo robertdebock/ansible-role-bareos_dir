@@ -4,7 +4,7 @@
 Client {
   Name = "{{ item.name }}"
   Address = "{{ item.address }}"
-  Password = "{{ item.password }}"
+  Password = "[MD5]{{ item.password | md5 }}"
 {% if item.tls_enable is defined %}
   TLS Enable = {{ item.tls_enable | ternary('Yes', 'No') }}
 {% endif %}
