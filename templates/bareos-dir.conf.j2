@@ -2,7 +2,7 @@
 
 Director {
   Name = "{{ bareos_dir_hostname }}"
-  Password = "[MD5]{{ bareos_dir_password | md5 }}"
+  Password = "{{ bareos_dir_password }}"
   QueryFile = "{{ bareos_dir_queryfile }}"
   Maximum Concurrent Jobs = {{ bareos_dir_max_concurrent_jobs }}
   Messages = "{{ bareos_dir_message }}"
