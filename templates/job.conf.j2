@@ -36,6 +36,9 @@ Job {
 {% if item.where is defined %}
   Where = "{{ item.where }}"
 {% endif %}
+{% if item.maximum_concurrent_jobs is defined %}
+  Maximum Concurrent Jobs = {{ item.maximum_concurrent_jobs }}
+{% endif %}
 }
 {% else %}
 # This file is not enabled.

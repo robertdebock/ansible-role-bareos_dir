@@ -109,6 +109,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           runafterjob: "/usr/lib/bareos/scripts/delete_catalog_backup MyCatalog"
           write_bootstrap: '|/usr/bin/bsmtp -h localhost -f \"\(Bareos\) \" -s \"Bootstrap for Job %j\" root'
           priority: 11
+          maximum_concurrent_jobs: 2
       bareos_dir_messages:
         - name: "Standard"
           description: "Send relevant messages to the Director."
