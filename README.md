@@ -38,6 +38,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
         - name: bareos-fd
           address: 127.0.0.1
           password: "MySecretPassword"
+          maximum_concurrent_jobs: 3
         - name: "disabled-client"
           enabled: no
       bareos_dir_filesets:

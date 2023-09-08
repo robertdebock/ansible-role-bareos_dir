@@ -5,6 +5,9 @@ Client {
   Name = "{{ item.name }}"
   Address = "{{ item.address }}"
   Password = "{{ item.password }}"
+{% if item.maximum_concurrent_jobs is defined %}
+  Maximum Concurrent Jobs = {{ item.maximum_concurrent_jobs }}
+{% endif %}
 {% if item.connection_from_client_to_director is defined %}
   Connection From Client To Director = {{ item.connection_from_client_to_director | ternary('Yes', 'No') }}
 {% endif %}
