@@ -280,7 +280,7 @@ bareos_dir_password: "secretpassword"
 bareos_dir_queryfile: "/usr/lib/bareos/scripts/query.sql"
 
 # The maximum number of concurrent jobs.
-bareos_dir_max_concurrent_jobs: 10
+bareos_dir_max_concurrent_jobs: 1
 
 # The messages configuration to use.
 bareos_dir_message: Daemon
