@@ -228,6 +228,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           media_type: File
           tls_enable: yes
           tls_verify_peer: no
+          maximum_concurrent_jobs: 3
         - name: "disabled-storage"
           enabled: no
 ```

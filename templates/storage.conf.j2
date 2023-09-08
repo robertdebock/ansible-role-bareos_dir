@@ -13,6 +13,9 @@ Storage {
 {% if item.tls_verify_peer is defined %}
   TLS Verify Peer = {{ item.tls_verify_peer | ternary('Yes', 'No') }}
 {% endif %}
+{% if item.maximum_concurrent_jobs is defined %}
+  Maximum Concurrent Jobs = {{ item.maximum_concurrent_jobs }}
+{% endif %}
 }
 {% else %}
 # This file is not enabled.
