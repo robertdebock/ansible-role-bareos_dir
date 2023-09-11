@@ -12,7 +12,7 @@
     that:
       - bareos_dir_hostname is defined
       - bareos_dir_hostname is string
-      - bareos_dir_hostname is != ""
+      - bareos_dir_hostname != ""
     quiet: yes
 
 - name: assert | Test if bareos_dir_password is set correctly
@@ -20,7 +20,7 @@
     that:
       - bareos_dir_password is defined
       - bareos_dir_password is string
-      - bareos_dir_password is != ""
+      - bareos_dir_password != ""
     quiet: yes
 
 - name: assert | Test if bareos_dir_queryfile is set correctly
@@ -28,7 +28,7 @@
     that:
       - bareos_dir_queryfile is defined
       - bareos_dir_queryfile is string
-      - bareos_dir_queryfile is != ""
+      - bareos_dir_queryfile != ""
     quiet: yes
 
 - name: assert | Test if bareos_dir_max_concurrent_jobs is set correctly
@@ -43,7 +43,7 @@
     that:
       - bareos_dir_message is defined
       - bareos_dir_message is string
-      - bareos_dir_message is != ""
+      - bareos_dir_message != ""
     quiet: yes
 
 - name: assert | Test if bareos_dir_tls_enable is set correctly
