@@ -47,6 +47,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           include:
             files:
               - /
+            exclude_dirs_containing: nobackup
             options:
               signature: MD5
               one_fs: no
@@ -60,6 +61,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
                 - vfat
                 - xfs
                 - zfs
+              compression: GZIP
           exclude:
             files:
               - /var/lib/bareos

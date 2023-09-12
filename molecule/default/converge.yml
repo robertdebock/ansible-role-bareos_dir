@@ -34,6 +34,7 @@
           include:
             files:
               - /
+            exclude_dirs_containing: nobackup
             options:
               signature: MD5
               one_fs: no
@@ -47,6 +48,7 @@
                 - vfat
                 - xfs
                 - zfs
+              compression: GZIP
           exclude:
             files:
               - /var/lib/bareos

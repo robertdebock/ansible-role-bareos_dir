@@ -15,7 +15,14 @@ FileSet {
       FS Type = {{ fs_type }}
 {% endfor %}
 {% endif %}
+{% if item.include.options.compression is defined %}
+      Compression = {{ item.include.options.compression }}
+{% endif %}
     }
+{% if item.include.exclude_dirs_containing is defined %}
+      Exclude Dir Containing = {{ item.include.exclude_dirs_containing }}
+{% endif %}
+
 {% for file in item.include.files %}
     File = {{ file }}
 {% endfor %}
