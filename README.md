@@ -277,6 +277,9 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 # Backup the configuration files.
 bareos_dir_backup_configurations: no
 
+# Install debug packages. This requires the debug repositories to be enabled.
+bareos_dir_install_debug_packages: no
+
 # The hostname of the Director.
 bareos_dir_hostname: "{{ inventory_hostname }}"
 
