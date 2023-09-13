@@ -20,6 +20,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   roles:
     - role: robertdebock.bareos_dir
       bareos_dir_backup_configurations: yes
+      bareos_dir_install_debug_packages: yes
       bareos_dir_catalogs:
         - name: MyCatalog
           dbname: bareos
@@ -258,6 +259,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
     # - role: robertdebock.core_dependencies
     # - role: robertdebock.postfix
     - role: robertdebock.bareos_repository
+      bareos_repository_enable_tracebacks: yes
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.

@@ -23,6 +23,12 @@
   ansible.builtin.package:
     name: "{{ bareos_dir_packages }}"
 
+- name: Install debug packages
+  ansible.builtin.package:
+    name: "{{ bareos_dir_debug_packages }}"
+  when:
+    - bareos_dir_install_debug_packages
+
 - name: Run database setup scripts
   ansible.builtin.command:
     cmd: "{{ item }}"

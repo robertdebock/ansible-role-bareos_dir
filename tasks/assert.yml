@@ -136,3 +136,10 @@
       - bareos_dir_storages is defined
       - bareos_dir_storages is iterable
     quiet: yes
+
+- name: assert | Test if bareos_dir_install_debug_packages is set correctly
+  ansible.builtin.assert:
+    that:
+      - bareos_dir_install_debug_packages is defined
+      - bareos_dir_install_debug_packages is boolean
+    quiet: yes

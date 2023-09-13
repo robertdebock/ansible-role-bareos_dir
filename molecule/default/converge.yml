@@ -7,6 +7,7 @@
   roles:
     - role: ansible-role-bareos_dir
       bareos_dir_backup_configurations: yes
+      bareos_dir_install_debug_packages: yes
       bareos_dir_catalogs:
         - name: MyCatalog
           dbname: bareos

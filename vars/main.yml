@@ -19,3 +19,10 @@ bareos_dir_install_scripts:
   - /usr/lib/bareos/scripts/create_bareos_database
   - /usr/lib/bareos/scripts/make_bareos_tables
   - /usr/lib/bareos/scripts/grant_bareos_privileges
+
+_bareos_dir_debug_packages:
+  default:
+    - "bareos-director-debuginfo"
+  Debian:
+    - "bareos-director-dbg"
+bareos_dir_debug_packages: "{{ _bareos_dir_debug_packages[ansible_os_family] | default(_bareos_dir_debug_packages['default']) }}"
