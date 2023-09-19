@@ -3,18 +3,36 @@
 {% if item.enabled is defined and item.enabled or item.enabled is not defined %}
 JobDefs {
   Name = "{{ item.name }}"
-  Type = {{ item.type }}
-  Level = {{ item.level }}
-  FileSet = "{{ item.fileset }}"
-  Schedule = "{{ item.schedule }}"
-  Storage = "{{ item.storage }}"
   Messages = "{{ item.messages }}"
   Pool = {{ item.pool }}
+  Type = {{ item.type }}
+{% if item.level is defined %}
+  Level = {{ item.level }}
+{% endif %}
+{% if item.fileset is defined %}
+  FileSet = "{{ item.fileset }}"
+{% endif %}
+{% if item.schedule %}
+  Schedule = "{{ item.schedule }}"
+{% endif %}
+{% if item.storage is defined %}
+  Storage = "{{ item.storage }}"
+{% endif %}
+{% if item.priority %}
   Priority = {{ item.priority }}
+{% endif %}
+{% if item.write_bootstrap is defined %}
   Write Bootstrap = "{{ item.write_bootstrap }}"
+{% endif %}
+{% if item.full_backup_pool is defined %}
   Full Backup Pool = {{ item.full_backup_pool }}
+{% endif %}
+{% if item.differential_backup_pool is defined %}
   Differential Backup Pool = {{ item.differential_backup_pool }}
+{% endif %}
+{% if item.incremental_backup_pool is defined %}
   Incremental Backup Pool = {{ item.incremental_backup_pool }}
+{% endif %}
 }
 {% else %}
 # This file is not enabled.
