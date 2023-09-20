@@ -3,12 +3,6 @@
 {% if item.enabled is defined and item.enabled or item.enabled is not defined %}
 {{ bareos_dir_template_type }} {
   Name = "{{ item.name }}"
-{% if bareos_dir_template_type == "Job" %}
-  Messages = "{{ item.messages }}"
-  Pool = {{ item.pool }}
-  Type = {{ item.type }}
-{% endif %}
-{% if bareos_dir_template_type == "JobDefs" %}
 {% if item.messages is defined %}
   Messages = "{{ item.messages }}"
 {% endif %}
@@ -17,7 +11,6 @@
 {% endif %}
 {% if item.type is defined %}
   Type = {{ item.type }}
-{% endif %}
 {% endif %}
 {% if item.description is defined %}
   Description = "{{ item.description }}"

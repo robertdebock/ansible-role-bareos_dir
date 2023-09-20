@@ -100,7 +100,6 @@
           write_bootstrap: '|/usr/bin/bsmtp -h localhost -f \"\(Bareos\) \" -s \"Bootstrap for Job %j\" root'
           priority: 11
           maximum_concurrent_jobs: 2
-          messages: Standard
       bareos_dir_messages:
         - name: "Standard"
           description: "Send relevant messages to the Director."
