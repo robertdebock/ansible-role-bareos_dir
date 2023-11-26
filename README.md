@@ -1,4 +1,4 @@
-# Ansible role [bareos_dir](#bareos_dir)
+# [Ansible role bareos_dir](#bareos_dir)
 
 Install and configure [Bareos](https://www.bareos.com/) Director.
 
