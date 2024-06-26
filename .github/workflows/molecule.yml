@@ -36,21 +36,17 @@ jobs:
           - image: "debian"
             tag: "buster"
           - image: "enterpriselinux"
-            tag: "7"
-          - image: "enterpriselinux"
             tag: "8"
           - image: "enterpriselinux"
             tag: "latest"
           - image: "fedora"
             tag: "38"
           - image: "fedora"
-            tag: "latest"
+            tag: "39"
           - image: "opensuse"
             tag: "latest"
           - image: "ubuntu"
-            tag: "latest"
-          - image: "ubuntu"
-            tag: "focal"
+            tag: "jammy"
     steps:
       - name: checkout
         uses: actions/checkout@v4
