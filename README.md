@@ -305,6 +305,9 @@ bareos_dir_catalogs: []
 # A list of consoles to configure.
 bareos_dir_consoles: []
 
+# A list of counters to configure.
+bareos_dir_counters: []
+
 # A list of clients to configure.
 bareos_dir_clients: []
 
