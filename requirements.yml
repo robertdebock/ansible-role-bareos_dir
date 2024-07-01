@@ -9,4 +9,5 @@ roles:
   # The `core_dependencies` and `postfix` roles provide mailing capabilities for the `bareos_role`: "dir".
   # - name: robertdebock.core_dependencies
   # - name: robertdebock.postfix
+collections:
   - name: community.general
