@@ -11,3 +11,4 @@ roles:
   # - name: robertdebock.postfix
 collections:
   - name: community.general
+  - name: community.postgresql
