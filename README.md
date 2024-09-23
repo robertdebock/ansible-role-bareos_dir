@@ -256,6 +256,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
     # bareos-dir needs to send emails.
     - role: robertdebock.core_dependencies
     - role: robertdebock.postfix
+      postfix_myhostname: "smtp.example.com"
     - role: robertdebock.bareos_repository
       bareos_repository_enable_tracebacks: true
 ```
