@@ -257,6 +257,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
     - role: robertdebock.core_dependencies
     - role: robertdebock.postfix
       postfix_myhostname: "smtp.example.com"
+      postfix_mydomain: "example.com"
+      postfix_myorigin: "example.com"
     - role: robertdebock.bareos_repository
       bareos_repository_enable_tracebacks: true
 ```
