@@ -1,0 +1,21 @@
+digraph PhiloDilemma {
+  label = "Robert de Bock" ;
+  overlap=false
+  {
+    "bareos_dir" [fillcolor=yellow style=filled penwidth=3]
+    "robertdebock.bootstrap" [fillcolor=green style=filled]
+    "robertdebock.bareos_repository" [fillcolor=green style=filled]
+    "robertdebock.buildtools" [fillcolor=green style=filled]
+    "robertdebock.python_pip" [fillcolor=green style=filled]
+    "robertdebock.postgres" [fillcolor=green style=filled]
+    "robertdebock.core_dependencies" [fillcolor=green style=filled]
+    "robertdebock.postfix" [fillcolor=green style=filled]
+  }
+  "bareos_dir" -> "robertdebock.bootstrap"
+  "bareos_dir" -> "robertdebock.bareos_repository"
+  "bareos_dir" -> "robertdebock.buildtools"
+  "bareos_dir" -> "robertdebock.python_pip"
+  "bareos_dir" -> "robertdebock.postgres"
+  "bareos_dir" -> "robertdebock.core_dependencies"
+  "bareos_dir" -> "robertdebock.postfix"
+}
